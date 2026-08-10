@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEFFE TOITURE — Couvreur à Vierzon | Disponible 24h/24</title>
+<meta name="description" content="JEFFE TOITURE, artisan couvreur à Vierzon. Couverture, zinguerie, étanchéité, isolation de combles et interventions d'urgence 24h/24, 7j/7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14171A;
+    --steel:#232A30;
+    --steel-deep:#0F1317;
+    --paper:#EAE6DD;
+    --paper-2:#DFDACD;
+    --line:rgba(20,23,26,0.14);
+    --line-soft:rgba(20,23,26,0.08);
+    --rouille:#B8501E;
+    --rouille-deep:#8C3A14;
+    --zinc:#5E7480;
+    --zinc-soft:#93A6AF;
+    --signal:#E8B923;
+    --white:#FCFBF8;
+
+    --display:'Barlow Condensed', sans-serif;
+    --body:'Inter', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit;}
+  :focus-visible{outline:3px solid var(--rouille); outline-offset:3px;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+
+  h1,h2,h3{
+    font-family:var(--display);
+    font-weight:700;
+    letter-spacing:0.01em;
+    line-height:0.98;
+    text-transform:uppercase;
+  }
+
+  .tag{
+    font-family:var(--mono);
+    font-size:0.74rem;
+    letter-spacing:0.13em;
+    text-transform:uppercase;
+    color:var(--rouille);
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+  }
+  .tag::before{
+    content:"";
+    width:9px; height:9px;
+    border:1.5px solid var(--rouille);
+    display:inline-block;
+    transform:rotate(45deg);
+  }
+
+  /* corner bracket device — used throughout as a structural / "measured" motif */
+  .bracketed{position:relative;}
+  .bracketed::before, .bracketed::after{
+    content:"";
+    position:absolute;
+    width:14px; height:14px;
+    border:1.6px solid var(--zinc-soft);
+    pointer-events:none;
+  }
+  .bracketed::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+  .bracketed::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(234,230,221,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:15px 28px; max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+    text-decoration:none; color:var(--ink);
+  }
+  .brand-mark{width:38px; height:38px; flex-shrink:0;}
+  .brand .name{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:1.32rem;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    line-height:1;
+  }
+  .brand small{
+    display:block;
+    font-family:var(--mono);
+    font-weight:500;
+    font-size:0.62rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--rouille);
+    margin-top:3px;
+  }
+  .navlinks{
+    display:flex; gap:32px; list-style:none;
+    font-family:var(--mono);
+    font-size:0.82rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+  }
+  .navlinks a{ text-decoration:none; position:relative; padding-bottom:3px; }
+  .navlinks a::after{
+    content:""; position:absolute; left:0; bottom:0;
+    width:0%; height:2px; background:var(--rouille);
+    transition:width .22s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+
+  .call-btn{
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--ink); color:var(--white);
+    font-weight:600; font-family:var(--mono); font-size:0.85rem;
+    padding:11px 17px; text-decoration:none; white-space:nowrap;
+    transition:background .2s ease;
+  }
+  .call-btn:hover{background:var(--rouille);}
+  .call-btn svg{width:15px; height:15px; flex-shrink:0;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:64px 0 0;
+    background:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px),
+      var(--paper);
+    background-size:34px 34px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse 900px 500px at 78% 8%, rgba(184,80,30,0.10), transparent 65%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:40px;
+    align-items:center;
+    padding:38px 0 74px;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--ink); color:var(--white);
+    padding:8px 14px; font-family:var(--mono); font-size:0.76rem;
+    letter-spacing:0.05em; margin-bottom:24px;
+  }
+  .badge .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--signal);
+    box-shadow:0 0 8px 2px rgba(232,185,35,0.7);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.4vw, 4.1rem);
+    max-width:13ch;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--rouille);
+  }
+  .hero p.lede{
+    margin-top:22px; font-size:1.08rem; max-width:44ch; color:#3a3f43;
+    font-family:var(--body); text-transform:none;
+  }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; }
+  .btn-primary{
+    background:var(--rouille); color:var(--white);
+    font-weight:700; padding:15px 24px;
+    text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-size:0.88rem; letter-spacing:0.03em; text-transform:uppercase;
+    transition:background .18s ease, transform .18s ease;
+  }
+  .btn-primary:hover{background:var(--rouille-deep); transform:translateY(-1px);}
+  .btn-secondary{
+    border:1.5px solid var(--ink); color:var(--ink);
+    padding:15px 24px; text-decoration:none; font-weight:600;
+    font-family:var(--mono); font-size:0.88rem; letter-spacing:0.03em; text-transform:uppercase;
+    transition:background .18s ease, color .18s ease;
+  }
+  .btn-secondary:hover{background:var(--ink); color:var(--white);}
+
+  /* signature element: technical roof cross-section */
+  .schema{
+    position:relative;
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:26px 22px 20px;
+  }
+  .schema .cap{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--mono); font-size:0.68rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--zinc); margin-bottom:14px;
+  }
+  .schema svg{ width:100%; height:auto; }
+
+  /* ---------- INTRO / SPEC SHEET ---------- */
+  .intro{ padding:86px 0 40px; }
+  .intro-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:60px; align-items:start; }
+  .intro h2{ font-size:clamp(1.9rem, 3.4vw, 2.6rem); margin-top:12px; max-width:15ch; }
+  .intro-text p{
+    font-size:1.02rem; color:#3a3f43; margin-top:18px; max-width:54ch;
+    font-family:var(--body);
+  }
+  .intro-text a{ color:var(--rouille); font-weight:600; }
+
+  .spec-sheet{ border-top:1.5px solid var(--ink); }
+  .spec-row{
+    display:grid; grid-template-columns:120px 1fr; gap:18px;
+    padding:19px 0; border-bottom:1px solid var(--line);
+  }
+  .spec-row .k{
+    font-family:var(--mono); font-size:0.72rem; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--rouille); padding-top:2px;
+  }
+  .spec-row h3{
+    font-family:var(--body); font-weight:700; text-transform:none;
+    letter-spacing:0; font-size:1rem;
+  }
+  .spec-row p{ font-size:0.9rem; color:#54595d; margin-top:4px; font-family:var(--body); }
+
+  /* ---------- SERVICES ---------- */
+  .services{
+    padding:70px 0 90px; background:var(--white);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:30px; margin-bottom:44px; flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:10px; max-width:18ch; }
+  .section-head p{ max-width:36ch; color:#54595d; font-size:0.96rem; font-family:var(--body); }
+
+  .service-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr);
+    gap:1px; background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--white); padding:30px 26px 26px;
+    transition:background .2s ease; position:relative;
+  }
+  .service-card:hover{ background:var(--paper); }
+  .service-card .num{
+    font-family:var(--mono); font-size:0.72rem; color:var(--zinc-soft);
+    letter-spacing:0.06em;
+  }
+  .service-card svg{ width:28px; height:28px; color:var(--rouille); margin:14px 0 16px; }
+  .service-card h3{
+    font-family:var(--body); font-size:1.04rem; font-weight:700;
+    text-transform:none; letter-spacing:0;
+  }
+  .service-card p{ margin-top:8px; font-size:0.9rem; color:#54595d; font-family:var(--body); }
+
+  /* ---------- URGENCY BAND ---------- */
+  .urgency{
+    background:var(--steel-deep); color:var(--white);
+    padding:78px 0; position:relative; overflow:hidden;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:34px 34px;
+  }
+  .urgency-grid{
+    position:relative; display:grid; grid-template-columns:1.2fr 0.8fr;
+    gap:50px; align-items:center;
+  }
+  .urgency .tag{ color:var(--signal); }
+  .urgency .tag::before{ border-color:var(--signal); }
+  .urgency h2{ font-size:clamp(1.9rem,3.4vw,2.8rem); margin-top:14px; max-width:16ch; }
+  .urgency p{
+    margin-top:16px; color:rgba(252,251,248,0.72); max-width:46ch;
+    font-size:1rem; font-family:var(--body); text-transform:none;
+  }
+  .urgency-card{
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.16);
+    padding:30px;
+  }
+  .urgency-card .clock{
+    font-family:var(--mono); font-size:0.78rem; letter-spacing:0.06em;
+    color:var(--signal); text-transform:uppercase;
+    display:flex; align-items:center; gap:9px;
+  }
+  .urgency-card .clock svg{ width:16px; height:16px; }
+  .urgency-card .phone-big{
+    display:block; font-family:var(--mono); font-size:1.85rem; font-weight:700;
+    margin:14px 0 18px; text-decoration:none; color:var(--white); letter-spacing:0.01em;
+  }
+  .urgency-card .phone-big:hover{ color:var(--signal); }
+  .urgency-card .btn-primary{ width:100%; justify-content:center; }
+
+  /* ---------- VALUES ---------- */
+  .values{ padding:88px 0; }
+  .value-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:30px; margin-top:44px; }
+  .value{ border-top:2px solid var(--rouille); padding-top:16px; }
+  .value .num{ font-family:var(--mono); font-size:0.72rem; color:var(--zinc); }
+  .value h3{
+    font-family:var(--body); font-weight:700; font-size:1rem;
+    text-transform:none; letter-spacing:0; margin-top:6px;
+  }
+  .value p{ margin-top:8px; font-size:0.9rem; color:#54595d; font-family:var(--body); }
+
+  /* ---------- CAPABILITIES ---------- */
+  .capabilities{ background:var(--steel); color:var(--paper); padding:88px 0; }
+  .capabilities .tag{ color:var(--signal); }
+  .capabilities .tag::before{ border-color:var(--signal); }
+  .capabilities h2{ color:var(--white); font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px; max-width:20ch; }
+  .cap-list{ margin-top:40px; display:grid; grid-template-columns:repeat(2, 1fr); gap:0 40px; }
+  .cap-item{
+    display:flex; align-items:center; gap:14px; padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    font-size:0.96rem; font-family:var(--body);
+  }
+  .cap-item .mk{
+    font-family:var(--mono); font-size:0.72rem; color:var(--signal);
+    width:26px; flex-shrink:0;
+  }
+
+  /* ---------- ZONE ---------- */
+  .zone{ padding:88px 0; }
+  .zone-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:center; }
+  .zone h2{ font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px; max-width:16ch; }
+  .zone p{ margin-top:16px; color:#3a3f43; max-width:46ch; font-family:var(--body); }
+  .zone-map{ background:var(--white); border:1px solid var(--line); padding:34px; }
+  .zone-map .center{
+    font-family:var(--mono); font-size:0.76rem; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--rouille); margin-bottom:16px;
+  }
+  .commune-list{ display:flex; flex-wrap:wrap; gap:9px; }
+  .commune-list span{
+    font-size:0.86rem; font-family:var(--body); padding:8px 13px;
+    border:1px solid var(--line); background:var(--paper);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ background:var(--white); border-top:1px solid var(--line); padding:88px 0; }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  .contact h2{ font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px; }
+  .contact p.lede{ margin-top:16px; color:#54595d; max-width:42ch; font-family:var(--body); text-transform:none; }
+  .contact-details{ margin-top:32px; display:flex; flex-direction:column; gap:20px; }
+  .contact-row{ display:flex; gap:16px; align-items:flex-start; }
+  .contact-row svg{ width:21px; height:21px; color:var(--rouille); flex-shrink:0; margin-top:3px; }
+  .contact-row a, .contact-row span{
+    text-decoration:none; font-size:1rem; color:var(--ink); font-family:var(--body);
+  }
+  .contact-row .label{
+    display:block; font-family:var(--mono); font-size:0.7rem; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--zinc); margin-bottom:3px;
+  }
+  .contact-card{ background:var(--steel-deep); color:var(--white); padding:38px; }
+  .contact-card .tag{ color:var(--signal); margin-bottom:16px; }
+  .contact-card .tag::before{ border-color:var(--signal); }
+  .contact-card h3{
+    font-family:var(--display); font-size:1.7rem; max-width:16ch;
+  }
+  .contact-card p{
+    margin-top:12px; color:rgba(252,251,248,0.7); font-size:0.94rem;
+    font-family:var(--body); text-transform:none;
+  }
+  .contact-card .btn-primary{ margin-top:22px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--steel-deep); color:rgba(252,251,248,0.55); padding:38px 0; font-size:0.84rem; }
+  .footer-grid{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .footer-grid .brand .name{ color:var(--white); }
+  .footer-grid .brand small{ color:var(--signal); }
+  footer nav{ display:flex; gap:22px; flex-wrap:wrap; font-family:var(--mono); text-transform:uppercase; font-size:0.78rem; }
+  footer nav a{ text-decoration:none; color:rgba(252,251,248,0.55); }
+  footer nav a:hover{ color:var(--signal); }
+
+  @media (max-width: 900px){
+    .navlinks{ display:none; }
+    .hero-grid, .intro-grid, .urgency-grid, .zone-grid, .contact-grid{ grid-template-columns:1fr; }
+    .service-grid{ grid-template-columns:repeat(2,1fr); }
+    .value-grid{ grid-template-columns:repeat(2,1fr); }
+    .cap-list{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 560px){
+    .service-grid{ grid-template-columns:1fr; }
+    .value-grid{ grid-template-columns:1fr; }
+    .call-btn span.txt{ display:none; }
+    .spec-row{ grid-template-columns:1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 22L20 8L36 22" stroke="#B8501E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 20V33H31V20" stroke="#14171A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17 33V25H23V33" stroke="#14171A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="16" r="1.6" fill="#B8501E"/>
+      </svg>
+      <span><span class="name">JEFFE TOITURE</span><small>Couvreur — Vierzon</small></span>
+    </a>
+    <ul class="navlinks">
+      <li><a href="#prestations">Prestations</a></li>
+      <li><a href="#urgence">Urgences 24/7</a></li>
+      <li><a href="#zone">Zone</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="call-btn" href="tel:+33624546480">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="txt">06 24 54 64 80</span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="badge">
+          <span class="dot"></span>
+          URGENCE TOITURE — DISPONIBLE 24H/24, 7J/7
+        </div>
+        <h1>Votre toit, <em>calculé</em> au millimètre.</h1>
+        <p class="lede">JEFFE TOITURE est votre couvreur artisan à Vierzon : couverture, zinguerie, étanchéité et isolation de combles, exécutés avec précision — et une équipe joignable à toute heure en cas d'urgence.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="tel:+33624546480">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            06 24 54 64 80
+          </a>
+          <a class="btn-secondary" href="#contact">Demander un devis</a>
+        </div>
+      </div>
+
+      <!-- signature element: technical roof cross-section, blueprint style -->
+      <div class="schema bracketed">
+        <div class="cap">
+          <span>FIG. 01 — COUPE TOITURE</span>
+          <span>ÉCH. 1:20</span>
+        </div>
+        <svg viewBox="0 0 460 340" xmlns="http://www.w3.org/2000/svg">
+          <!-- roof pitch -->
+          <line x1="40" y1="170" x2="230" y2="50" stroke="#14171A" stroke-width="2.5"/>
+          <line x1="230" y1="50" x2="420" y2="170" stroke="#14171A" stroke-width="2.5"/>
+          <!-- tuiles hatch -->
+          <g stroke="#B8501E" stroke-width="1.6" opacity="0.85">
+            <path d="M60 164 L246 58"/>
+            <path d="M80 176 L262 70"/>
+            <path d="M100 188 L278 82"/>
+            <path d="M120 200 L294 94"/>
+            <path d="M234 58 L410 164"/>
+            <path d="M218 70 L396 176"/>
+            <path d="M202 82 L380 188"/>
+            <path d="M186 94 L364 200"/>
+          </g>
+          <!-- chevrons / structure -->
+          <line x1="230" y1="50" x2="230" y2="240" stroke="#5E7480" stroke-width="1.6" stroke-dasharray="3 4"/>
+          <line x1="90" y1="205" x2="90" y2="255" stroke="#5E7480" stroke-width="2"/>
+          <line x1="370" y1="205" x2="370" y2="255" stroke="#5E7480" stroke-width="2"/>
+          <line x1="90" y1="255" x2="370" y2="255" stroke="#5E7480" stroke-width="2"/>
+          <!-- isolation fill -->
+          <rect x="120" y="210" width="220" height="26" fill="#93A6AF" opacity="0.28"/>
+          <!-- gouttiere -->
+          <path d="M28 172 q12 14 26 0" stroke="#14171A" stroke-width="2.5" fill="none"/>
+          <path d="M406 172 q12 14 26 0" stroke="#14171A" stroke-width="2.5" fill="none"/>
+          <line x1="34" y1="180" x2="34" y2="300" stroke="#14171A" stroke-width="2.5"/>
+          <line x1="426" y1="180" x2="426" y2="300" stroke="#14171A" stroke-width="2.5"/>
+          <!-- ground -->
+          <line x1="10" y1="300" x2="450" y2="300" stroke="#14171A" stroke-width="1.5"/>
+          <!-- dimension line -->
+          <line x1="10" y1="318" x2="450" y2="318" stroke="#5E7480" stroke-width="1" />
+          <line x1="10" y1="312" x2="10" y2="324" stroke="#5E7480" stroke-width="1"/>
+          <line x1="450" y1="312" x2="450" y2="324" stroke="#5E7480" stroke-width="1"/>
+          <text x="230" y="333" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#5E7480">EMPRISE 9.40 m</text>
+          <!-- callouts -->
+          <text x="248" y="46" font-family="JetBrains Mono, monospace" font-size="10" fill="#B8501E">01 — TUILES</text>
+          <text x="345" y="215" font-family="JetBrains Mono, monospace" font-size="10" fill="#5E7480">02 — ISOLATION</text>
+          <text x="380" y="270" font-family="JetBrains Mono, monospace" font-size="10" fill="#14171A">03 — ZINGUERIE</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- INTRO / SPEC SHEET ---------- -->
+  <section class="intro">
+    <div class="wrap intro-grid">
+      <div class="intro-text">
+        <div class="tag">À VIERZON ET ALENTOURS</div>
+        <h2>L'artisan couvreur de confiance à Vierzon</h2>
+        <p>Basé au 1 rue de Wittelsheim à Vierzon, JEFFE TOITURE intervient sur tous les travaux de couverture, de zinguerie et d'isolation, en neuf comme en rénovation.</p>
+        <p>Qu'il s'agisse d'une réfection complète de toiture, d'une réparation ponctuelle ou d'une urgence après tempête, chaque chantier est mesuré, chiffré et exécuté avec la même exigence : une toiture étanche, durable, sans mauvaise surprise.</p>
+        <p>Notre différence : une équipe <a href="#urgence">joignable 24h/24</a>, pour intervenir dès qu'une fuite ou un dégât menace votre toit.</p>
+      </div>
+      <div class="spec-sheet">
+        <div class="spec-row">
+          <div class="k">Fiche 01</div>
+          <div>
+            <h3>Disponible 24h/24, 7j/7</h3>
+            <p>Une urgence toiture ne prévient pas — notre équipe répond présent de jour comme de nuit.</p>
+          </div>
+        </div>
+        <div class="spec-row">
+          <div class="k">Fiche 02</div>
+          <div>
+            <h3>Un interlocuteur unique</h3>
+            <p>Du diagnostic au dernier réglage, vous suivez votre chantier avec un seul contact.</p>
+          </div>
+        </div>
+        <div class="spec-row">
+          <div class="k">Fiche 03</div>
+          <div>
+            <h3>Devis clair, sans surprise</h3>
+            <p>Un diagnostic honnête et un prix annoncé avant toute intervention sur votre toiture.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- SERVICES ---------- -->
+  <section class="services" id="prestations">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="tag">NOS PRESTATIONS</div>
+          <h2>Des travaux de toiture complets à Vierzon</h2>
+        </div>
+        <p>De la pose à l'entretien, chaque étape de votre projet de couverture est prise en charge.</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="num">01</div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 4l9 8"/><path d="M5 10v10h14V10"/></svg>
+          <h3>Couverture</h3>
+          <p>Pose et rénovation de toitures en tuiles, ardoises naturelles ou artificielles, et bac acier.</p>
+        </div>
+        <div class="service-card">
+          <div class="num">02</div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4z"/><path d="M6 8v8a4 4 0 0 0 4 4h2"/><path d="M12 20v-6"/></svg>
+          <h3>Zinguerie</h3>
+          <p>Gouttières, chéneaux et noues en zinc ou cuivre, pour une évacuation d'eau sans faille.</p>
+        </div>
+        <div class="service-card">
+          <div class="num">03</div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.9 4.9l2.8 2.8"/><path d="M16.3 16.3l2.8 2.8"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.9 19.1l2.8-2.8"/><path d="M16.3 7.7l2.8-2.8"/></svg>
+          <h3>Étanchéité toiture-terrasse</h3>
+          <p>Traitement des toits plats et terrasses en membrane EPDM, pour une étanchéité durable.</p>
+        </div>
+        <div class="service-card">
+          <div class="num">04</div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <h3>Isolation de combles</h3>
+          <p>Combles perdus ou aménagés : une isolation soignée pour le confort thermique de la maison.</p>
+        </div>
+        <div class="service-card">
+          <div class="num">05</div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/></svg>
+          <h3>Réparation & recherche de fuites</h3>
+          <p>Diagnostic rapide et intervention ciblée dès les premiers signes d'infiltration.</p>
+        </div>
+        <div class="service-card">
+          <div class="num">06</div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M12 3a9 9 0 0 0-9 9c3 0 5 1 6 3 1-3 2-4 5-4a9 9 0 0 0-2-8z"/></svg>
+          <h3>Démoussage & entretien</h3>
+          <p>Traitement hydrofuge, nettoyage et contrôle régulier pour préserver votre toiture.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- URGENCY ---------- -->
+  <section class="urgency" id="urgence">
+    <div class="wrap urgency-grid">
+      <div>
+        <div class="tag">INTERVENTION D'URGENCE</div>
+        <h2>Une fuite en pleine nuit ? Une tempête a soulevé vos tuiles ?</h2>
+        <p>JEFFE TOITURE intervient à Vierzon et dans tout le Cher, à n'importe quelle heure du jour ou de la nuit. Pas d'attente jusqu'au lendemain matin : on décroche, on se déplace, on sécurise votre toiture.</p>
+      </div>
+      <div class="urgency-card">
+        <div class="clock">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          24H/24 · 7J/7
+        </div>
+        <a class="phone-big" href="tel:+33624546480">06 24 54 64 80</a>
+        <a class="btn-primary" href="tel:+33624546480">Appeler maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- VALUES ---------- -->
+  <section class="values">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="tag">POURQUOI JEFFE TOITURE</div>
+          <h2>Un couvreur réactif et rigoureux</h2>
+        </div>
+        <p>Un travail propre, dans les délais annoncés, et une équipe joignable quand ça compte.</p>
+      </div>
+      <div class="value-grid">
+        <div class="value">
+          <div class="num">A</div>
+          <h3>Réactivité</h3>
+          <p>Une équipe disponible 24h/24 pour les urgences toiture à Vierzon et alentours.</p>
+        </div>
+        <div class="value">
+          <div class="num">B</div>
+          <h3>Savoir-faire artisanal</h3>
+          <p>Des techniques éprouvées, adaptées aux toitures anciennes comme aux constructions récentes.</p>
+        </div>
+        <div class="value">
+          <div class="num">C</div>
+          <h3>Transparence</h3>
+          <p>Un diagnostic honnête et un devis détaillé avant toute intervention.</p>
+        </div>
+        <div class="value">
+          <div class="num">D</div>
+          <h3>Travail garanti</h3>
+          <p>Des chantiers réalisés dans les règles de l'art, pour une toiture qui dure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CAPABILITIES ---------- -->
+  <section class="capabilities">
+    <div class="wrap">
+      <div class="tag">NOS SAVOIR-FAIRE</div>
+      <h2>Tout ce qu'on peut faire sur votre toit</h2>
+      <div class="cap-list">
+        <div class="cap-item"><span class="mk">→</span>Pose de tuiles terre cuite et béton</div>
+        <div class="cap-item"><span class="mk">→</span>Ardoises naturelles et artificielles</div>
+        <div class="cap-item"><span class="mk">→</span>Couverture en bac acier</div>
+        <div class="cap-item"><span class="mk">→</span>Zinguerie zinc et cuivre</div>
+        <div class="cap-item"><span class="mk">→</span>Gouttières, chéneaux et descentes</div>
+        <div class="cap-item"><span class="mk">→</span>Faîtage, rives et arêtiers</div>
+        <div class="cap-item"><span class="mk">→</span>Pose de fenêtres de toit (Velux)</div>
+        <div class="cap-item"><span class="mk">→</span>Démoussage et traitement hydrofuge</div>
+        <div class="cap-item"><span class="mk">→</span>Isolation sous toiture</div>
+        <div class="cap-item"><span class="mk">→</span>Recherche et réparation de fuites</div>
+        <div class="cap-item"><span class="mk">→</span>Intervention après tempête</div>
+        <div class="cap-item"><span class="mk">→</span>Rénovation de toitures anciennes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- ZONE ---------- -->
+  <section class="zone" id="zone">
+    <div class="wrap zone-grid">
+      <div>
+        <div class="tag">ZONE D'INTERVENTION</div>
+        <h2>À Vierzon et dans les communes voisines</h2>
+        <p>Notre équipe se déplace à Vierzon et dans tout le Cher pour vos travaux de couverture comme pour vos urgences toiture.</p>
+      </div>
+      <div class="zone-map bracketed">
+        <div class="center">Basés à Vierzon — 1 rue de Wittelsheim</div>
+        <div class="commune-list">
+          <span>Vierzon</span>
+          <span>Foëcy</span>
+          <span>Méreau</span>
+          <span>Méry-sur-Cher</span>
+          <span>Vouzeron</span>
+          <span>Thénioux</span>
+          <span>Brinay</span>
+          <span>Saint-Hilaire-de-Court</span>
+          <span>Lury-sur-Arnon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CONTACT ---------- -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="tag">CONTACT</div>
+        <h2>Parlons de votre toiture</h2>
+        <p class="lede">Un projet de couverture, une question, ou une urgence ? Contactez-nous, nous répondons rapidement — à toute heure en cas d'urgence.</p>
+        <div class="contact-details">
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div><span class="label">Téléphone</span><a href="tel:+33624546480">06 24 54 64 80</a></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <div><span class="label">E-mail</span><a href="mailto:jeffetoiturecouvreurvierzon@gmail.com">jeffetoiturecouvreurvierzon@gmail.com</a></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><span class="label">Adresse</span><span>1 rue de Wittelsheim, 18100 Vierzon</span></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div><span class="label">Disponibilité</span><span>24h/24 — 7j/7</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="tag">URGENCE TOITURE</div>
+        <h3>On vous répond, même en pleine nuit.</h3>
+        <p>Fuite, tuiles envolées, dégât des eaux : appelez directement, on s'organise pour intervenir au plus vite.</p>
+        <a class="btn-primary" href="tel:+33624546480">Appeler le 06 24 54 64 80</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <a class="brand" href="#top"><span class="name">JEFFE TOITURE</span><small>Couvreur — Vierzon</small></a>
+    <nav>
+      <a href="#prestations">Prestations</a>
+      <a href="#urgence">Urgences 24/7</a>
+      <a href="#zone">Zone</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span>1 rue de Wittelsheim, 18100 Vierzon — 06 24 54 64 80</span>
+  </div>
+</footer>
+
+</body>
+</html>
