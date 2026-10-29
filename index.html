@@ -1,751 +1,435 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JEFFE TOITURE — Couvreur à Vierzon | Disponible 24h/24</title>
-<meta name="description" content="JEFFE TOITURE, artisan couvreur à Vierzon. Couverture, zinguerie, étanchéité, isolation de combles et interventions d'urgence 24h/24, 7j/7.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logistics Quest – Exam Quiz</title>
 <style>
-  :root{
-    --ink:#14171A;
-    --steel:#232A30;
-    --steel-deep:#0F1317;
-    --paper:#EAE6DD;
-    --paper-2:#DFDACD;
-    --line:rgba(20,23,26,0.14);
-    --line-soft:rgba(20,23,26,0.08);
-    --rouille:#B8501E;
-    --rouille-deep:#8C3A14;
-    --zinc:#5E7480;
-    --zinc-soft:#93A6AF;
-    --signal:#E8B923;
-    --white:#FCFBF8;
-
-    --display:'Barlow Condensed', sans-serif;
-    --body:'Inter', sans-serif;
-    --mono:'JetBrains Mono', monospace;
-  }
-
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:var(--body);
-    color:var(--ink);
-    background:var(--paper);
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  img,svg{display:block; max-width:100%;}
-  a{color:inherit;}
-  :focus-visible{outline:3px solid var(--rouille); outline-offset:3px;}
-
-  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
-
-  h1,h2,h3{
-    font-family:var(--display);
-    font-weight:700;
-    letter-spacing:0.01em;
-    line-height:0.98;
-    text-transform:uppercase;
-  }
-
-  .tag{
-    font-family:var(--mono);
-    font-size:0.74rem;
-    letter-spacing:0.13em;
-    text-transform:uppercase;
-    color:var(--rouille);
-    display:inline-flex;
-    align-items:center;
-    gap:9px;
-  }
-  .tag::before{
-    content:"";
-    width:9px; height:9px;
-    border:1.5px solid var(--rouille);
-    display:inline-block;
-    transform:rotate(45deg);
-  }
-
-  /* corner bracket device — used throughout as a structural / "measured" motif */
-  .bracketed{position:relative;}
-  .bracketed::before, .bracketed::after{
-    content:"";
-    position:absolute;
-    width:14px; height:14px;
-    border:1.6px solid var(--zinc-soft);
-    pointer-events:none;
-  }
-  .bracketed::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
-  .bracketed::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
-
-  /* ---------- HEADER ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(234,230,221,0.94);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:15px 28px; max-width:1180px; margin:0 auto;
-  }
-  .brand{
-    display:flex; align-items:center; gap:12px;
-    text-decoration:none; color:var(--ink);
-  }
-  .brand-mark{width:38px; height:38px; flex-shrink:0;}
-  .brand .name{
-    font-family:var(--display);
-    font-weight:800;
-    font-size:1.32rem;
-    letter-spacing:0.02em;
-    text-transform:uppercase;
-    line-height:1;
-  }
-  .brand small{
-    display:block;
-    font-family:var(--mono);
-    font-weight:500;
-    font-size:0.62rem;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--rouille);
-    margin-top:3px;
-  }
-  .navlinks{
-    display:flex; gap:32px; list-style:none;
-    font-family:var(--mono);
-    font-size:0.82rem;
-    letter-spacing:0.03em;
-    text-transform:uppercase;
-  }
-  .navlinks a{ text-decoration:none; position:relative; padding-bottom:3px; }
-  .navlinks a::after{
-    content:""; position:absolute; left:0; bottom:0;
-    width:0%; height:2px; background:var(--rouille);
-    transition:width .22s ease;
-  }
-  .navlinks a:hover::after{width:100%;}
-
-  .call-btn{
-    display:inline-flex; align-items:center; gap:9px;
-    background:var(--ink); color:var(--white);
-    font-weight:600; font-family:var(--mono); font-size:0.85rem;
-    padding:11px 17px; text-decoration:none; white-space:nowrap;
-    transition:background .2s ease;
-  }
-  .call-btn:hover{background:var(--rouille);}
-  .call-btn svg{width:15px; height:15px; flex-shrink:0;}
-
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    overflow:hidden;
-    padding:64px 0 0;
-    background:
-      linear-gradient(var(--line-soft) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px),
-      var(--paper);
-    background-size:34px 34px;
-  }
-  .hero::before{
-    content:"";
-    position:absolute; inset:0;
-    background:radial-gradient(ellipse 900px 500px at 78% 8%, rgba(184,80,30,0.10), transparent 65%);
-    pointer-events:none;
-  }
-  .hero-grid{
-    position:relative;
-    display:grid;
-    grid-template-columns:1.05fr 0.95fr;
-    gap:40px;
-    align-items:center;
-    padding:38px 0 74px;
-  }
-  .badge{
-    display:inline-flex; align-items:center; gap:9px;
-    background:var(--ink); color:var(--white);
-    padding:8px 14px; font-family:var(--mono); font-size:0.76rem;
-    letter-spacing:0.05em; margin-bottom:24px;
-  }
-  .badge .dot{
-    width:7px; height:7px; border-radius:50%;
-    background:var(--signal);
-    box-shadow:0 0 8px 2px rgba(232,185,35,0.7);
-  }
-  .hero h1{
-    font-size:clamp(2.6rem, 5.4vw, 4.1rem);
-    max-width:13ch;
-  }
-  .hero h1 em{
-    font-style:normal;
-    color:var(--rouille);
-  }
-  .hero p.lede{
-    margin-top:22px; font-size:1.08rem; max-width:44ch; color:#3a3f43;
-    font-family:var(--body); text-transform:none;
-  }
-  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; }
-  .btn-primary{
-    background:var(--rouille); color:var(--white);
-    font-weight:700; padding:15px 24px;
-    text-decoration:none; display:inline-flex; align-items:center; gap:10px;
-    font-family:var(--mono); font-size:0.88rem; letter-spacing:0.03em; text-transform:uppercase;
-    transition:background .18s ease, transform .18s ease;
-  }
-  .btn-primary:hover{background:var(--rouille-deep); transform:translateY(-1px);}
-  .btn-secondary{
-    border:1.5px solid var(--ink); color:var(--ink);
-    padding:15px 24px; text-decoration:none; font-weight:600;
-    font-family:var(--mono); font-size:0.88rem; letter-spacing:0.03em; text-transform:uppercase;
-    transition:background .18s ease, color .18s ease;
-  }
-  .btn-secondary:hover{background:var(--ink); color:var(--white);}
-
-  /* signature element: technical roof cross-section */
-  .schema{
-    position:relative;
-    background:var(--white);
-    border:1px solid var(--line);
-    padding:26px 22px 20px;
-  }
-  .schema .cap{
-    display:flex; justify-content:space-between; align-items:center;
-    font-family:var(--mono); font-size:0.68rem; letter-spacing:0.08em;
-    text-transform:uppercase; color:var(--zinc); margin-bottom:14px;
-  }
-  .schema svg{ width:100%; height:auto; }
-
-  /* ---------- INTRO / SPEC SHEET ---------- */
-  .intro{ padding:86px 0 40px; }
-  .intro-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:60px; align-items:start; }
-  .intro h2{ font-size:clamp(1.9rem, 3.4vw, 2.6rem); margin-top:12px; max-width:15ch; }
-  .intro-text p{
-    font-size:1.02rem; color:#3a3f43; margin-top:18px; max-width:54ch;
-    font-family:var(--body);
-  }
-  .intro-text a{ color:var(--rouille); font-weight:600; }
-
-  .spec-sheet{ border-top:1.5px solid var(--ink); }
-  .spec-row{
-    display:grid; grid-template-columns:120px 1fr; gap:18px;
-    padding:19px 0; border-bottom:1px solid var(--line);
-  }
-  .spec-row .k{
-    font-family:var(--mono); font-size:0.72rem; letter-spacing:0.06em;
-    text-transform:uppercase; color:var(--rouille); padding-top:2px;
-  }
-  .spec-row h3{
-    font-family:var(--body); font-weight:700; text-transform:none;
-    letter-spacing:0; font-size:1rem;
-  }
-  .spec-row p{ font-size:0.9rem; color:#54595d; margin-top:4px; font-family:var(--body); }
-
-  /* ---------- SERVICES ---------- */
-  .services{
-    padding:70px 0 90px; background:var(--white);
-    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-  }
-  .section-head{
-    display:flex; justify-content:space-between; align-items:flex-end;
-    gap:30px; margin-bottom:44px; flex-wrap:wrap;
-  }
-  .section-head h2{ font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:10px; max-width:18ch; }
-  .section-head p{ max-width:36ch; color:#54595d; font-size:0.96rem; font-family:var(--body); }
-
-  .service-grid{
-    display:grid; grid-template-columns:repeat(3, 1fr);
-    gap:1px; background:var(--line);
-    border:1px solid var(--line);
-  }
-  .service-card{
-    background:var(--white); padding:30px 26px 26px;
-    transition:background .2s ease; position:relative;
-  }
-  .service-card:hover{ background:var(--paper); }
-  .service-card .num{
-    font-family:var(--mono); font-size:0.72rem; color:var(--zinc-soft);
-    letter-spacing:0.06em;
-  }
-  .service-card svg{ width:28px; height:28px; color:var(--rouille); margin:14px 0 16px; }
-  .service-card h3{
-    font-family:var(--body); font-size:1.04rem; font-weight:700;
-    text-transform:none; letter-spacing:0;
-  }
-  .service-card p{ margin-top:8px; font-size:0.9rem; color:#54595d; font-family:var(--body); }
-
-  /* ---------- URGENCY BAND ---------- */
-  .urgency{
-    background:var(--steel-deep); color:var(--white);
-    padding:78px 0; position:relative; overflow:hidden;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-    background-size:34px 34px;
-  }
-  .urgency-grid{
-    position:relative; display:grid; grid-template-columns:1.2fr 0.8fr;
-    gap:50px; align-items:center;
-  }
-  .urgency .tag{ color:var(--signal); }
-  .urgency .tag::before{ border-color:var(--signal); }
-  .urgency h2{ font-size:clamp(1.9rem,3.4vw,2.8rem); margin-top:14px; max-width:16ch; }
-  .urgency p{
-    margin-top:16px; color:rgba(252,251,248,0.72); max-width:46ch;
-    font-size:1rem; font-family:var(--body); text-transform:none;
-  }
-  .urgency-card{
-    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.16);
-    padding:30px;
-  }
-  .urgency-card .clock{
-    font-family:var(--mono); font-size:0.78rem; letter-spacing:0.06em;
-    color:var(--signal); text-transform:uppercase;
-    display:flex; align-items:center; gap:9px;
-  }
-  .urgency-card .clock svg{ width:16px; height:16px; }
-  .urgency-card .phone-big{
-    display:block; font-family:var(--mono); font-size:1.85rem; font-weight:700;
-    margin:14px 0 18px; text-decoration:none; color:var(--white); letter-spacing:0.01em;
-  }
-  .urgency-card .phone-big:hover{ color:var(--signal); }
-  .urgency-card .btn-primary{ width:100%; justify-content:center; }
-
-  /* ---------- VALUES ---------- */
-  .values{ padding:88px 0; }
-  .value-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:30px; margin-top:44px; }
-  .value{ border-top:2px solid var(--rouille); padding-top:16px; }
-  .value .num{ font-family:var(--mono); font-size:0.72rem; color:var(--zinc); }
-  .value h3{
-    font-family:var(--body); font-weight:700; font-size:1rem;
-    text-transform:none; letter-spacing:0; margin-top:6px;
-  }
-  .value p{ margin-top:8px; font-size:0.9rem; color:#54595d; font-family:var(--body); }
-
-  /* ---------- CAPABILITIES ---------- */
-  .capabilities{ background:var(--steel); color:var(--paper); padding:88px 0; }
-  .capabilities .tag{ color:var(--signal); }
-  .capabilities .tag::before{ border-color:var(--signal); }
-  .capabilities h2{ color:var(--white); font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px; max-width:20ch; }
-  .cap-list{ margin-top:40px; display:grid; grid-template-columns:repeat(2, 1fr); gap:0 40px; }
-  .cap-item{
-    display:flex; align-items:center; gap:14px; padding:14px 0;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-    font-size:0.96rem; font-family:var(--body);
-  }
-  .cap-item .mk{
-    font-family:var(--mono); font-size:0.72rem; color:var(--signal);
-    width:26px; flex-shrink:0;
-  }
-
-  /* ---------- ZONE ---------- */
-  .zone{ padding:88px 0; }
-  .zone-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:center; }
-  .zone h2{ font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px; max-width:16ch; }
-  .zone p{ margin-top:16px; color:#3a3f43; max-width:46ch; font-family:var(--body); }
-  .zone-map{ background:var(--white); border:1px solid var(--line); padding:34px; }
-  .zone-map .center{
-    font-family:var(--mono); font-size:0.76rem; text-transform:uppercase;
-    letter-spacing:0.06em; color:var(--rouille); margin-bottom:16px;
-  }
-  .commune-list{ display:flex; flex-wrap:wrap; gap:9px; }
-  .commune-list span{
-    font-size:0.86rem; font-family:var(--body); padding:8px 13px;
-    border:1px solid var(--line); background:var(--paper);
-  }
-
-  /* ---------- CONTACT ---------- */
-  .contact{ background:var(--white); border-top:1px solid var(--line); padding:88px 0; }
-  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
-  .contact h2{ font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px; }
-  .contact p.lede{ margin-top:16px; color:#54595d; max-width:42ch; font-family:var(--body); text-transform:none; }
-  .contact-details{ margin-top:32px; display:flex; flex-direction:column; gap:20px; }
-  .contact-row{ display:flex; gap:16px; align-items:flex-start; }
-  .contact-row svg{ width:21px; height:21px; color:var(--rouille); flex-shrink:0; margin-top:3px; }
-  .contact-row a, .contact-row span{
-    text-decoration:none; font-size:1rem; color:var(--ink); font-family:var(--body);
-  }
-  .contact-row .label{
-    display:block; font-family:var(--mono); font-size:0.7rem; text-transform:uppercase;
-    letter-spacing:0.08em; color:var(--zinc); margin-bottom:3px;
-  }
-  .contact-card{ background:var(--steel-deep); color:var(--white); padding:38px; }
-  .contact-card .tag{ color:var(--signal); margin-bottom:16px; }
-  .contact-card .tag::before{ border-color:var(--signal); }
-  .contact-card h3{
-    font-family:var(--display); font-size:1.7rem; max-width:16ch;
-  }
-  .contact-card p{
-    margin-top:12px; color:rgba(252,251,248,0.7); font-size:0.94rem;
-    font-family:var(--body); text-transform:none;
-  }
-  .contact-card .btn-primary{ margin-top:22px; }
-
-  /* ---------- FOOTER ---------- */
-  footer{ background:var(--steel-deep); color:rgba(252,251,248,0.55); padding:38px 0; font-size:0.84rem; }
-  .footer-grid{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
-  .footer-grid .brand .name{ color:var(--white); }
-  .footer-grid .brand small{ color:var(--signal); }
-  footer nav{ display:flex; gap:22px; flex-wrap:wrap; font-family:var(--mono); text-transform:uppercase; font-size:0.78rem; }
-  footer nav a{ text-decoration:none; color:rgba(252,251,248,0.55); }
-  footer nav a:hover{ color:var(--signal); }
-
-  @media (max-width: 900px){
-    .navlinks{ display:none; }
-    .hero-grid, .intro-grid, .urgency-grid, .zone-grid, .contact-grid{ grid-template-columns:1fr; }
-    .service-grid{ grid-template-columns:repeat(2,1fr); }
-    .value-grid{ grid-template-columns:repeat(2,1fr); }
-    .cap-list{ grid-template-columns:1fr; }
-  }
-  @media (max-width: 560px){
-    .service-grid{ grid-template-columns:1fr; }
-    .value-grid{ grid-template-columns:1fr; }
-    .call-btn span.txt{ display:none; }
-    .spec-row{ grid-template-columns:1fr; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ transition:none !important; }
-  }
+:root{
+  --bg:#0e1230; --bg2:#171c47; --card:#1f2559; --card2:#2a3170; --txt:#f2f4ff; --mut:#9aa3d6;
+  --acc:#ffcc33; --acc2:#7c5cff; --ok:#2ee59d; --bad:#ff5d73; --blue:#4cc9ff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);
+  background:radial-gradient(1200px 700px at 80% -10%,#2b2f86 0,transparent 60%),var(--bg);min-height:100vh}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.9rem;margin:.2em 0}
+h2{margin:.2em 0 .6em}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--bg2);border:1px solid #ffffff14;border-radius:16px;padding:12px 16px}
+.lvl{font-weight:800;color:var(--acc)}
+.xpbar{flex:1;min-width:140px;height:12px;background:#0006;border-radius:99px;overflow:hidden}
+.xpbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc2),var(--acc));transition:width .6s}
+.pill{background:#0005;border-radius:99px;padding:4px 12px;font-size:.85rem;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:14px 0}
+.chap{background:var(--card);border:1px solid #ffffff14;border-radius:16px;padding:14px;cursor:pointer;text-align:left;color:var(--txt);font:inherit;transition:transform .15s,border-color .15s}
+.chap:hover,.chap:focus-visible{transform:translateY(-3px);border-color:var(--acc);outline:none}
+.chap b{display:block;font-size:1rem}
+.chap small{color:var(--mut)}
+.stars{color:var(--acc);letter-spacing:2px;margin-top:6px;min-height:1.2em}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+.mode{border:0;border-radius:16px;padding:16px;font:inherit;color:#fff;cursor:pointer;text-align:left;font-weight:700;transition:transform .15s}
+.mode:hover{transform:translateY(-3px)}
+.mode small{display:block;font-weight:400;opacity:.9;margin-top:4px}
+.m1{background:linear-gradient(135deg,#7c5cff,#4cc9ff)}
+.m2{background:linear-gradient(135deg,#ff5d73,#ff9a44)}
+.m3{background:linear-gradient(135deg,#17b978,#2ee59d);color:#04281b}
+.m4{background:linear-gradient(135deg,#d45cff,#7c5cff)}
+.opt-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;color:var(--mut);font-size:.9rem}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.badge{background:var(--card);border-radius:12px;padding:8px 12px;font-size:.85rem;opacity:.35;filter:grayscale(1)}
+.badge.on{opacity:1;filter:none;border:1px solid var(--acc)}
+.hud{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.hud .pill b{color:var(--txt)}
+.hearts{font-size:1.2rem;letter-spacing:2px}
+.prog{height:10px;background:#0006;border-radius:99px;overflow:hidden;margin-bottom:12px}
+.prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--acc2));transition:width .3s}
+.timer{height:6px;background:#0006;border-radius:99px;overflow:hidden;margin-bottom:12px}
+.timer>i{display:block;height:100%;width:100%;background:var(--ok)}
+.q{background:var(--card);border:1px solid #ffffff14;border-radius:18px;padding:18px}
+.q .tag{font-size:.75rem;color:var(--blue);text-transform:uppercase;letter-spacing:.08em}
+.q h3{font-size:1.2rem;line-height:1.4;margin:.4em 0 1em}
+.ans{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:var(--card2);color:var(--txt);border:2px solid transparent;border-radius:12px;padding:12px 14px;margin:8px 0;font:inherit;cursor:pointer;transition:transform .12s,border-color .12s}
+.ans:hover:not(:disabled){border-color:var(--acc2);transform:translateX(3px)}
+.ans kbd{background:#0005;border-radius:6px;padding:1px 8px;font-size:.85rem;color:var(--acc)}
+.ans.ok{background:#12664a;border-color:var(--ok)}
+.ans.bad{background:#6b2030;border-color:var(--bad);animation:shake .3s}
+.ans:disabled{cursor:default}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fb{margin-top:12px;padding:12px 14px;border-radius:12px;background:#0004;border-left:4px solid var(--acc);line-height:1.45}
+.fb.ok{border-color:var(--ok)} .fb.bad{border-color:var(--bad)}
+.btn{background:var(--acc);color:#241a00;border:0;border-radius:12px;padding:12px 22px;font:inherit;font-weight:800;cursor:pointer;margin-top:12px}
+.btn.sec{background:var(--card2);color:var(--txt)}
+.xpfloat{position:fixed;left:50%;top:30%;transform:translateX(-50%);font-size:2rem;font-weight:900;color:var(--acc);pointer-events:none;animation:up 1s forwards;text-shadow:0 2px 12px #000}
+@keyframes up{to{transform:translate(-50%,-70px);opacity:0}}
+.big{font-size:3.2rem;font-weight:900;color:var(--acc)}
+.center{text-align:center}
+.rev{background:var(--card);border-radius:12px;padding:12px;margin:8px 0;font-size:.92rem;line-height:1.45;text-align:left}
+.rev .g{color:var(--ok)} .rev .r{color:var(--bad)}
+canvas#fx{position:fixed;inset:0;pointer-events:none;z-index:50}
+.toast{position:fixed;right:12px;bottom:12px;background:var(--card2);border:1px solid var(--acc);border-radius:12px;padding:10px 14px;z-index:60;animation:up2 .4s}
+@keyframes up2{from{transform:translateY(20px);opacity:0}}
+a.link{color:var(--blue);cursor:pointer;text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
+<canvas id="fx"></canvas>
+<div class="wrap">
+  <div class="top" id="top"></div>
+  <div id="app"></div>
+</div>
 
-<header>
-  <div class="nav">
-    <a class="brand" href="#top">
-      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 22L20 8L36 22" stroke="#B8501E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M9 20V33H31V20" stroke="#14171A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M17 33V25H23V33" stroke="#14171A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="20" cy="16" r="1.6" fill="#B8501E"/>
-      </svg>
-      <span><span class="name">JEFFE TOITURE</span><small>Couvreur — Vierzon</small></span>
-    </a>
-    <ul class="navlinks">
-      <li><a href="#prestations">Prestations</a></li>
-      <li><a href="#urgence">Urgences 24/7</a></li>
-      <li><a href="#zone">Zone</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a class="call-btn" href="tel:+33624546480">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span class="txt">06 24 54 64 80</span>
-    </a>
-  </div>
-</header>
+<script>
+/* ============ QUESTION BANK (based on the slides, ch. 1-6 and 12) ============ */
+const CH = {
+  1:"Logistics Overview",
+  2:"Logistics & Information Technology",
+  3:"Strategic and Financial Logistics",
+  4:"Organizational and Managerial Issues",
+  5:"The Supply Chain Management Concept",
+  6:"Procurement",
+  12:"Transportation"
+};
+const Q = [];
+function q(c,t,good,bad,e){Q.push({c,t,good,bad,e});}
 
-<main id="top">
+/* ---------- Chapter 1 ---------- */
+q(1,"Which economic utility corresponds to having products available at the moment the customer needs them?","Time utility",["Place utility","Form utility","Possession utility"],"Time utility = availability at the right moment (perishable / non-perishable products).");
+q(1,"Moving a product from a warehouse (low value) to a supermarket (higher value) creates which utility?","Place",["Time","Form","Possession"],"Place utility: the product is moved to where its value is higher.");
+q(1,"Breaking thousands of cases of diet cola into the smaller quantities customers want illustrates which utility?","Form",["Place","Time","Possession"],"Form utility: logistics transforms quantities (e.g. diet cola).");
+q(1,"Possession utility is mostly influenced by…","The payment terms associated with the product",["Delivery speed","Storage location","Packaging"],"Possession utility = transfer of ownership, tied to payment terms.");
+q(1,"According to CSCMP, logistics is the part of SCM that plans, implements and controls…","The forward AND reverse flow and storage of goods, services and information",["Only the transport of finished goods","Only information flows","Only the purchase of raw materials"],"The CSCMP definition includes forward AND reverse flow, from point of origin to point of consumption.");
+q(1,"Which of these factors is NOT cited as a reason for the growing importance of logistics?","An increase in economic regulation",["A reduction in economic regulation","Technological advances","Globalization of trade"],"The slide cites a REDUCTION in regulation (deregulation), not an increase.");
+q(1,"'Disintermediation' refers to…","Removing intermediaries between producer and consumer",["Adding a logistics intermediary","The merger of two carriers","Reducing inventory"],"Disintermediation = removal of intermediation between producer and consumer (e.g. online sales).");
+q(1,"The total cost approach says that…","A change in one activity raises some costs and lowers others: everything must be considered together",["Each cost must be minimized separately","Only transportation cost matters","Inventory costs are always the most important"],"Cost trade-offs: e.g. lower transportation cost often means higher warehousing cost.");
+q(1,"A classic cost trade-off is…","Lower transportation costs ↔ higher warehousing costs",["Lower inventory ↔ lower transportation","Higher sales ↔ higher price","Lower price ↔ higher quality"],"Direct example from the slide: transportation ↓ often paired with warehousing ↑.");
+q(1,"'Postponement' consists of…","Delaying value-added activities (assembly, packaging…) as late as possible",["Delaying payment to suppliers","Postponing a delivery to the customer","Lengthening production runs"],"Some operations once done at the factory are now done in the warehouse.");
+q(1,"'Landed cost' is…","The product price plus transportation costs",["Production cost only","The retail selling price","The annual storage cost"],"Landed cost = product price + transportation costs.");
+q(1,"Which function does the logistics channel contribute to the overall channel process?","The sorting function",["The financing function","The negotiating function","The promotion function"],"The logistics channel contributes the 'sorting function'.");
+q(1,"In marketing channels, which intermediaries facilitate the logistics channel?","Freight forwarders",["Banks","Brokers","Advertising agencies"],"Banks = ownership/financing; brokers = negotiation; agencies = promotion; forwarders = logistics.");
+q(1,"Starbucks set up inside Marriott hotels is an example of…","Co-branding",["Postponement","Disintermediation","Omnichannel"],"Related logistics question: deliver separately or co-load the vehicles?");
+q(1,"Which is an entry-level logistics position (according to the chapter)?","Logistics / supply chain analyst",["Transportation director","Warehouse operations manager","Purchasing manager"],"Entry-level: analyst, consultant, customer service manager, fulfillment supervisor. The others = second level.");
 
-  <!-- ---------- HERO ---------- -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="badge">
-          <span class="dot"></span>
-          URGENCE TOITURE — DISPONIBLE 24H/24, 7J/7
-        </div>
-        <h1>Votre toit, <em>calculé</em> au millimètre.</h1>
-        <p class="lede">JEFFE TOITURE est votre couvreur artisan à Vierzon : couverture, zinguerie, étanchéité et isolation de combles, exécutés avec précision — et une équipe joignable à toute heure en cas d'urgence.</p>
-        <div class="hero-ctas">
-          <a class="btn-primary" href="tel:+33624546480">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            06 24 54 64 80
-          </a>
-          <a class="btn-secondary" href="#contact">Demander un devis</a>
-        </div>
-      </div>
+/* ---------- Chapter 2 ---------- */
+q(2,"What is a benefit of effectively using information in logistics?","More supply chain visibility and shorter lead times",["Less need for coordination","Longer order processing","Reduced visibility of demand"],"Visibility, POS data, coordination of production/marketing/distribution, simplified order processing.");
+q(2,"Which office-system tool is most relevant to logisticians?","The spreadsheet",["The word processor","The presentation tool","The fax machine"],"Spreadsheets allow what-if analysis and some optimization models (e.g. the 'What's Best' add-in).");
+q(2,"Which technology was the 'gold standard' of logistics in the 1990s?","EDI (electronic data interchange)",["GPS","The iPad","The cloud"],"EDI = 1990s; wireless communication = first decade of the 2000s.");
+q(2,"A transaction processing system (TPS) can process…","In real time or in batches",["Only in real time","Only in batches","Only manually"],"TPS: real-time processing OR batch processing.");
+q(2,"Compared with bar codes, RFID…","Needs no direct line of sight and stores more data",["Requires a direct line of sight","Is read-only","Stores less data"],"RFID: no line of sight, more data, read AND write.");
+q(2,"An RFID system consists of…","A scanning antenna, a tag/chip, and a transceiver that interprets the data",["A screen, keyboard and scanner","A satellite and a GPS receiver","A server and a router"],"Scanning antenna + RFID tag + transceiver.");
+q(2,"A logistics information system (LIS) is…","The people, equipment and procedures that collect, sort, analyze and distribute information to logistics decision makers",["Accounting software","A type of sensor","A network of carriers"],"Definition adapted from Kotler & Armstrong.");
+q(2,"Simulation, as a DSS technique, consists of…","Modeling a real system, often with mathematical equations",["Extracting correlations from large databases","Automating payments","Tracking parcels by GPS"],"Extracting correlations = data mining.");
+q(2,"A TMS (Transportation Management System) is…","Software that automates order building, load management, tracking, auditing and payment of shipments",["Software that manages flows inside the warehouse","A complete ERP","A central database"],"Software supervising storage and material flows in the warehouse = WMS.");
+q(2,"Data mining depends on…","Data warehouses",["Bar codes","Purchasing cards","Reverse auctions"],"Data warehouse = central repository of all the organization's relevant data.");
+q(2,"What is a disadvantage of ERP systems cited in the chapter?","High cost and long installation time, weak logistics-specific capabilities (TMS/WMS) at first",["They don't share data between functions","They only work in batch mode","They are free but unreliable"],"Installation costs, lengthy installation, initial lack of logistics-specific functions.");
+q(2,"Compared with in-store retail, online selling is characterized by…","More, smaller orders, with item-level picking and a higher return rate",["Fewer but larger orders","Full-case picking","Lower returns from resellers"],"Online: open-case picking, parcels/envelopes, high returns from end consumers.");
+q(2,"What is an advantage of cloud computing / software on demand?","Pay-as-you-go: no large upfront investment, faster installation",["Unlimited customization","No security problems","Updates are never frequent"],"Disadvantages: too many updates, limited customization, security.");
+q(2,"Which of these is a disadvantage of cloud computing?","Limited customization and security issues",["Need for a larger IT staff","Slower installation","High capital expenditure"],"Cloud strengths: OPEX, speed, small IT team, regular updates.");
+q(2,"The four categories of e-procurement benefits are…","Transactional, compliance, management information, and price benefits",["Tax, legal, social and logistics","Strategic, tactical, operational and human","Quality, cost, lead time and service"],"Transactional, compliance, management information, price benefits.");
+q(2,"The Internet of Things (IoT) refers to…","Sensors and communications embedded in physical objects to track and control them over the Internet",["A professional social network","Payroll software","An EDI standard"],"Applications: warehousing, transportation, last-mile delivery.");
 
-      <!-- signature element: technical roof cross-section, blueprint style -->
-      <div class="schema bracketed">
-        <div class="cap">
-          <span>FIG. 01 — COUPE TOITURE</span>
-          <span>ÉCH. 1:20</span>
-        </div>
-        <svg viewBox="0 0 460 340" xmlns="http://www.w3.org/2000/svg">
-          <!-- roof pitch -->
-          <line x1="40" y1="170" x2="230" y2="50" stroke="#14171A" stroke-width="2.5"/>
-          <line x1="230" y1="50" x2="420" y2="170" stroke="#14171A" stroke-width="2.5"/>
-          <!-- tuiles hatch -->
-          <g stroke="#B8501E" stroke-width="1.6" opacity="0.85">
-            <path d="M60 164 L246 58"/>
-            <path d="M80 176 L262 70"/>
-            <path d="M100 188 L278 82"/>
-            <path d="M120 200 L294 94"/>
-            <path d="M234 58 L410 164"/>
-            <path d="M218 70 L396 176"/>
-            <path d="M202 82 L380 188"/>
-            <path d="M186 94 L364 200"/>
-          </g>
-          <!-- chevrons / structure -->
-          <line x1="230" y1="50" x2="230" y2="240" stroke="#5E7480" stroke-width="1.6" stroke-dasharray="3 4"/>
-          <line x1="90" y1="205" x2="90" y2="255" stroke="#5E7480" stroke-width="2"/>
-          <line x1="370" y1="205" x2="370" y2="255" stroke="#5E7480" stroke-width="2"/>
-          <line x1="90" y1="255" x2="370" y2="255" stroke="#5E7480" stroke-width="2"/>
-          <!-- isolation fill -->
-          <rect x="120" y="210" width="220" height="26" fill="#93A6AF" opacity="0.28"/>
-          <!-- gouttiere -->
-          <path d="M28 172 q12 14 26 0" stroke="#14171A" stroke-width="2.5" fill="none"/>
-          <path d="M406 172 q12 14 26 0" stroke="#14171A" stroke-width="2.5" fill="none"/>
-          <line x1="34" y1="180" x2="34" y2="300" stroke="#14171A" stroke-width="2.5"/>
-          <line x1="426" y1="180" x2="426" y2="300" stroke="#14171A" stroke-width="2.5"/>
-          <!-- ground -->
-          <line x1="10" y1="300" x2="450" y2="300" stroke="#14171A" stroke-width="1.5"/>
-          <!-- dimension line -->
-          <line x1="10" y1="318" x2="450" y2="318" stroke="#5E7480" stroke-width="1" />
-          <line x1="10" y1="312" x2="10" y2="324" stroke="#5E7480" stroke-width="1"/>
-          <line x1="450" y1="312" x2="450" y2="324" stroke="#5E7480" stroke-width="1"/>
-          <text x="230" y="333" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#5E7480">EMPRISE 9.40 m</text>
-          <!-- callouts -->
-          <text x="248" y="46" font-family="JetBrains Mono, monospace" font-size="10" fill="#B8501E">01 — TUILES</text>
-          <text x="345" y="215" font-family="JetBrains Mono, monospace" font-size="10" fill="#5E7480">02 — ISOLATION</text>
-          <text x="380" y="270" font-family="JetBrains Mono, monospace" font-size="10" fill="#14171A">03 — ZINGUERIE</text>
-        </svg>
-      </div>
-    </div>
-  </section>
+/* ---------- Chapter 3 ---------- */
+q(3,"What are the three generic strategies of an organization?","Cost leadership, differentiation, focus",["Growth, retention, diversification","Push, pull, hybrid","Local, regional, global"],"Cost leadership, differentiation, focus.");
+q(3,"The 'cost leadership' strategy consists of…","Becoming the lowest-cost producer in the industry for a given level of quality",["Offering unique attributes valued by the customer","Concentrating on a narrow market","Raising prices"],"Differentiation = unique attributes; focus = narrow market.");
+q(3,"The focus strategy…","Concentrates efforts on a narrowly defined market to gain either a cost OR a differentiation advantage",["Targets all segments","Applies only to luxury products","Eliminates logistics"],"Focus strategy = niche, with either a cost or a differentiation advantage.");
+q(3,"Which of these decisions is a logistics strategy decision?","Determining the number and location of warehouses",["Choosing the color of a product","Setting the promotional price","Hiring the accountant"],"Also: choosing transportation modes, deploying inventory, technology investments.");
+q(3,"How can finance influence logistics strategy?","Rates of return can decide between running your own warehouse or using a 3PL",["By setting production run lengths","By choosing packaging","By defining the product range"],"Direct example from the slide.");
+q(3,"A manufacturing decision to adopt just-in-time (JIT) influences…","Warehousing, transportation and inventory management",["Only purchasing","Only marketing","No logistics activity"],"Manufacturing → JIT → logistics impacts.");
+q(3,"The income statement presents, for a period…","Revenues, expenses and profit",["Assets, liabilities and equity","Cash inflows and outflows","Inventory and receivables"],"Also called the P&L (profit and loss statement).");
+q(3,"The balance sheet reflects, at a point in time…","Assets, liabilities and owner's equity",["Revenues and expenses","Cash flows","Performance ratios"],"Owner's equity = what the company owns − what it owes.");
+q(3,"The statement of cash flows shows…","How the organization generates cash and where it uses it",["What the company owns","The value of inventory","Net profit only"],"Positive cash flow allows operations to continue, investment, and meeting obligations.");
+q(3,"In the Strategic Profit Model, ROA equals…","Net profit margin × asset turnover",["Net profit margin + asset turnover","Sales / net profit","Assets / sales"],"ROA = net profit margin × asset turnover.");
+q(3,"Net profit margin is calculated as…","Net profit / sales",["Sales / total assets","Net profit / assets","Costs / sales"],"Net profit margin = net profit / sales.");
+q(3,"Asset turnover is calculated as…","Total sales / total assets",["Net profit / sales","Assets / sales","Inventory / costs"],"It indicates how efficiently capital is used. The most relevant logistics asset: inventory.");
+q(3,"What is a drawback of the Strategic Profit Model?","It ignores the timing of cash flows and can be manipulated in the short term",["It uses no ratios","It ignores sales","It doesn't apply to logistics"],"Another limit: it doesn't recognize assets dedicated to specific relationships.");
+q(3,"The four perspectives of the Balanced Scorecard are…","Customers, internal processes, learning and growth, financial results",["Cost, quality, lead time, service","Purchasing, production, sales, logistics","Strategic, tactical, operational, human"],"The BSC forces a look beyond traditional financial measures.");
+q(3,"Accounts receivable represent…","Money that customers owe the organization",["Money the organization owes suppliers","The value of inventory","Share capital"],"Logistics can influence how quickly invoices get paid.");
 
-  <!-- ---------- INTRO / SPEC SHEET ---------- -->
-  <section class="intro">
-    <div class="wrap intro-grid">
-      <div class="intro-text">
-        <div class="tag">À VIERZON ET ALENTOURS</div>
-        <h2>L'artisan couvreur de confiance à Vierzon</h2>
-        <p>Basé au 1 rue de Wittelsheim à Vierzon, JEFFE TOITURE intervient sur tous les travaux de couverture, de zinguerie et d'isolation, en neuf comme en rénovation.</p>
-        <p>Qu'il s'agisse d'une réfection complète de toiture, d'une réparation ponctuelle ou d'une urgence après tempête, chaque chantier est mesuré, chiffré et exécuté avec la même exigence : une toiture étanche, durable, sans mauvaise surprise.</p>
-        <p>Notre différence : une équipe <a href="#urgence">joignable 24h/24</a>, pour intervenir dès qu'une fuite ou un dégât menace votre toit.</p>
-      </div>
-      <div class="spec-sheet">
-        <div class="spec-row">
-          <div class="k">Fiche 01</div>
-          <div>
-            <h3>Disponible 24h/24, 7j/7</h3>
-            <p>Une urgence toiture ne prévient pas — notre équipe répond présent de jour comme de nuit.</p>
-          </div>
-        </div>
-        <div class="spec-row">
-          <div class="k">Fiche 02</div>
-          <div>
-            <h3>Un interlocuteur unique</h3>
-            <p>Du diagnostic au dernier réglage, vous suivez votre chantier avec un seul contact.</p>
-          </div>
-        </div>
-        <div class="spec-row">
-          <div class="k">Fiche 03</div>
-          <div>
-            <h3>Devis clair, sans surprise</h3>
-            <p>Un diagnostic honnête et un prix annoncé avant toute intervention sur votre toiture.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+/* ---------- Chapter 4 ---------- */
+q(4,"A 'fragmented' logistics structure is one where…","Logistics activities are managed across several departments",["All activities are in a single department","There is no manager","Everything is outsourced"],"Unified = activities combined in one department.");
+q(4,"A centralized logistics organization…","Has a single logistics department that administers everything from headquarters",["Decides by division or region","Has no logistics department","Outsources everything"],"Decentralized = decisions at the level of divisions / product groups / regions.");
+q(4,"What are the three organizational design types for logistics?","Hierarchical (functional), matrix, network",["Centralized, decentralized, hybrid","Unified, fragmented, mixed","Vertical, horizontal, diagonal"],"Hierarchical = top-down; matrix = cross-functional responsibilities; network = value-creating processes.");
+q(4,"In the network design, 'responsiveness' refers to…","The ability to respond to unique or unexpected customer requests",["Meeting current and emerging customer needs","The ability to cope with unexpected operating situations","Reducing defects"],"Relevancy = current/emerging needs; flexibility = unexpected situations, avoiding irreversible commitments.");
+q(4,"Productivity is defined as…","Output / input",["Input / output","Output − input","Profit / sales"],"Three ways to improve it: reduce input, increase output, or both.");
+q(4,"Labor productivity improvement efforts in logistics often aim to…","Increase output while keeping input constant",["Cut wages","Reduce output","Lay off massively"],"Workers resist pay cuts.");
+q(4,"Why can excess capacity hurt productivity?","It can lead to buying extra equipment/facilities (input ↑) with no additional output",["It always increases output","It lowers fixed costs","It improves quality"],"Getting more output from existing assets = productivity ↑.");
+q(4,"Logistics service quality that exceeds what the customer expects…","May add unnecessary costs",["Is always beneficial","Always reduces costs","Has no effect"],"Quality must be aligned with customer expectations.");
+q(4,"ISO 9000 is…","A set of generic standards to document, implement and demonstrate quality management systems",["A U.S. quality award","A statistical defect-reduction method","A safety law"],"Applies to industries AND services.");
+q(4,"Regarding ISO 9000 certification…","Annual audits and recertification every three years",["Audit every 10 years","No audit after certification","Monthly recertification"],"It is associated with better customer service and order accuracy.");
+q(4,"Six Sigma aims for a level of…","3.4 defects per million opportunities",["34 defects per million","3.4 defects per thousand","Guaranteed zero defects"],"99.99966% of the normal curve at six standard deviations.");
+q(4,"What is a cited disadvantage of Six Sigma?","Cultural barriers, resources to invest, management commitment",["It increases errors","It lengthens cycles","It eliminates quality"],"Advantages: cost reduction, fewer errors/waste, shorter cycle times.");
+q(4,"Lean Six Sigma is unique because…","It integrates Six Sigma and Lean: you cannot focus on quality or speed alone",["It ignores quality","It is reserved for hospitals","It replaces ISO 9000"],"Emphasis on quality tied to responsiveness.");
+q(4,"The Malcolm Baldrige award…","Is reserved for companies headquartered in the United States",["Is global","Is an ISO certification","Is limited to logistics companies"],"Created in the late 1980s, extended to healthcare and education.");
+q(4,"A 'catastrophic' risk is for example…","An earthquake or a terrorist attack",["Demand variability","A damaged parcel","A delivery delay"],"Operational risks: demand variability, shipment damage.");
+q(4,"Which program imposes '10+2'?","The Importer Security Filing (ISF)",["C-TPAT","CSI","TWIC"],"ISF = 10+2. CSI = Container Security Initiative. C-TPAT = customs-trade partnership against terrorism.");
+q(4,"Pilferage is…","Theft committed by employees",["Theft by pirates","Data theft","Accidental loss"],"Managed from hiring, zero-tolerance policy, keeping goods in motion.");
+q(4,"Reverse logistics…","Can cost 4 to 5 times more than forward logistics and involve 12 times more steps",["Costs less than forward logistics","Is simple and fast","Represents less than $1 billion in the US"],"It exceeds $100 billion in the United States.");
+q(4,"The three types of logistics complexity are…","Network, process, and range complexity",["Human, financial, legal","Local, national, global","Technical, social, political"],"Network = nodes/links; process = processes added over time; range = number of products.");
 
-  <!-- ---------- SERVICES ---------- -->
-  <section class="services" id="prestations">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="tag">NOS PRESTATIONS</div>
-          <h2>Des travaux de toiture complets à Vierzon</h2>
-        </div>
-        <p>De la pose à l'entretien, chaque étape de votre projet de couverture est prise en charge.</p>
-      </div>
-      <div class="service-grid">
-        <div class="service-card">
-          <div class="num">01</div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 4l9 8"/><path d="M5 10v10h14V10"/></svg>
-          <h3>Couverture</h3>
-          <p>Pose et rénovation de toitures en tuiles, ardoises naturelles ou artificielles, et bac acier.</p>
-        </div>
-        <div class="service-card">
-          <div class="num">02</div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4z"/><path d="M6 8v8a4 4 0 0 0 4 4h2"/><path d="M12 20v-6"/></svg>
-          <h3>Zinguerie</h3>
-          <p>Gouttières, chéneaux et noues en zinc ou cuivre, pour une évacuation d'eau sans faille.</p>
-        </div>
-        <div class="service-card">
-          <div class="num">03</div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.9 4.9l2.8 2.8"/><path d="M16.3 16.3l2.8 2.8"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.9 19.1l2.8-2.8"/><path d="M16.3 7.7l2.8-2.8"/></svg>
-          <h3>Étanchéité toiture-terrasse</h3>
-          <p>Traitement des toits plats et terrasses en membrane EPDM, pour une étanchéité durable.</p>
-        </div>
-        <div class="service-card">
-          <div class="num">04</div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-          <h3>Isolation de combles</h3>
-          <p>Combles perdus ou aménagés : une isolation soignée pour le confort thermique de la maison.</p>
-        </div>
-        <div class="service-card">
-          <div class="num">05</div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/></svg>
-          <h3>Réparation & recherche de fuites</h3>
-          <p>Diagnostic rapide et intervention ciblée dès les premiers signes d'infiltration.</p>
-        </div>
-        <div class="service-card">
-          <div class="num">06</div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M12 3a9 9 0 0 0-9 9c3 0 5 1 6 3 1-3 2-4 5-4a9 9 0 0 0-2-8z"/></svg>
-          <h3>Démoussage & entretien</h3>
-          <p>Traitement hydrofuge, nettoyage et contrôle régulier pour préserver votre toiture.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+/* ---------- Chapter 5 ---------- */
+q(5,"The Supply Chain Management concept is…","Relatively young, rarely mentioned before 1990",["Born in the 1920s","Used since the 19th century","Invented in 2010"],"Recognition came from the value of coordinating functions.");
+q(5,"According to CSCMP, the relationship between logistics and SCM is that…","SCM includes logistics management activities",["Logistics includes SCM","They are identical","They are unrelated"],"Logistics is part of SCM.");
+q(5,"What is the main difference between the SCOR and GSCF models?","GSCF involves all of the firm's functions; SCOR focuses on logistics, operations and purchasing",["SCOR is more cross-functional than GSCF","They are identical","GSCF only covers transportation"],"Degree of cross-functional involvement.");
+q(5,"What are the six processes of the SCOR model?","Plan, Source, Make, Deliver, Return, Enable",["Buy, Make, Move, Sell, Pay, Plan","Plan, Order, Ship, Bill, Return, Audit","Source, Stock, Sell, Ship, Serve, Save"],"Plan, source, make, deliver, return, enable.");
+q(5,"How many processes does the GSCF model include?","Eight",["Six","Four","Twelve"],"Including CRM, customer service management, demand management, order fulfillment, returns management…");
+q(5,"A 'fast' vs 'agile' supply chain: agile emphasizes…","The ability to respond to changes in demand volume and variety",["Speed only","The lowest cost","Inventory reduction"],"Fast = speed/time; agile = volume/variety flexibility.");
+q(5,"Traditional chains are… while customer-centric chains are…","Push-oriented, factory-driven / pull-oriented",["Pull-oriented / push-oriented","Customer-driven / factory-driven","Both push"],"Traditional: internal cost metrics; customer-centric: holistic metrics.");
+q(5,"The 'perfect order' requires…","On-time delivery, undamaged, in the right quantity — simultaneously",["Only on-time delivery","The lowest price","Luxury packaging"],"A multiplicative measure from the customer's point of view.");
+q(5,"An agile chain is most suitable when…","Demand is volatile and the need for variety is high",["Demand is stable and variety is low","There are no customers","Costs are fixed"],"Lean = stable demand, low variety.");
+q(5,"'Leagility' is…","A hybrid approach combining lean and agile",["A purely lean approach","A software package","A type of warehouse"],"One part of the chain is responsive, the other smooths production.");
+q(5,"The bullwhip effect is characterized by…","Increasing variability of orders between chain members",["Stable orders","Falling prices","Reduced transportation"],"Lean chains seek to reduce it.");
+q(5,"Relational exchanges are based on a philosophy of…","'What's in it for US?'",["'What's in it for ME?'","'At the lowest price'","'Win at all costs'"],"Transactional = 'What's in it for me?'.");
+q(5,"Which is an attribute of relational exchange?","Trust, commitment, dependence, joint investment, shared benefits",["Distrust and price competition","One-day contracts","Anonymity"],"The five attributes from the chapter.");
+q(5,"Which level of collaboration offers the best improvement opportunity, according to the chapter?","Strategic collaboration",["Transactional collaboration","Tactical information sharing","No collaboration"],"Transactional and tactical are the most widespread; strategic is increasing.");
+q(5,"A 'supply chain partnership' is characterized by…","Strong interdependence, information sharing, compatible goals, decisions based on value rather than price",["Low interdependence","Decisions based on price only","Lack of trust"],"Example of strategic collaboration.");
+q(5,"3PL (third-party logistics) is…","Any logistics activity not performed in-house (outsourcing)",["An internal inventory management company","A purchasing department","TMS software"],"Examples: DHL Supply Chain, Kuehne+Nagel, DB Schenker, UPS Supply Chain Solutions.");
+q(5,"The main purpose of a 4PL / Lead Logistics Provider is to…","Ensure the different 3PLs work toward supply chain objectives, while remaining neutral",["Transport the goods","Manufacture the products","Replace the customers"],"It must have expertise in supply chain trade-offs.");
+q(5,"What is a cause of logistics outsourcing failure?","Unrealistic expectations and lack of flexibility in the relationship",["Too much transparency","Too much mutual trust","Costs that are too low"],"A 3PL can improve efficiency and effectiveness, but can also fail.");
+q(5,"Which is NOT an obstacle to SCM implementation?","Compatible information systems",["Lack of management commitment","Reluctance to share data","Incompatible corporate cultures"],"The real obstacle: INCOMPATIBLE information systems.");
 
-  <!-- ---------- URGENCY ---------- -->
-  <section class="urgency" id="urgence">
-    <div class="wrap urgency-grid">
-      <div>
-        <div class="tag">INTERVENTION D'URGENCE</div>
-        <h2>Une fuite en pleine nuit ? Une tempête a soulevé vos tuiles ?</h2>
-        <p>JEFFE TOITURE intervient à Vierzon et dans tout le Cher, à n'importe quelle heure du jour ou de la nuit. Pas d'attente jusqu'au lendemain matin : on décroche, on se déplace, on sécurise votre toiture.</p>
-      </div>
-      <div class="urgency-card">
-        <div class="clock">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          24H/24 · 7J/7
-        </div>
-        <a class="phone-big" href="tel:+33624546480">06 24 54 64 80</a>
-        <a class="btn-primary" href="tel:+33624546480">Appeler maintenant</a>
-      </div>
-    </div>
-  </section>
+/* ---------- Chapter 6 ---------- */
+q(6,"Procurement costs often represent…","60 to 80% of revenue",["5 to 10%","20 to 30%","100%"],"Hence the increasingly strategic orientation of purchasing.");
+q(6,"'Supply management' is seen as…","A relational exchange approach with a limited number of suppliers",["A one-off purchase","A reverse auction","Quality control"],"'Procurement' and 'purchasing' are sometimes synonyms.");
+q(6,"An advantage of purchasing cards (p-cards) is…","Fewer invoices and purchases made in minutes rather than days",["More invoices","Slower supplier payments","No spend control"],"A single monthly payment regardless of the number of cardholders.");
+q(6,"What is a challenge of expanding p-cards internationally?","Differences in currencies, technology, acceptance and culture",["Too many local suppliers","No currency","Too much control"],"Four challenges cited in the slides.");
+q(6,"What is the first step of the supplier selection and evaluation process?","Identify the sourcing need",["Select the suppliers","Evaluate the decision","Negotiate the price"],"Order: need → situation analysis → identification/evaluation → selection → decision evaluation.");
+q(6,"'Single sourcing' consists of…","Using only one supplier for a given need",["Using several suppliers","Buying abroad","Making in-house"],"Opposite: multiple sourcing.");
+q(6,"The 'process-based' evaluation approach corresponds to…","An audit of the supplier's service/production process",["Measuring its actual performance","A price ranking","An auction"],"The performance-based approach looks at actual cost and quality (scorecards).");
+q(6,"'Supplier scorecards' are used to…","Report supplier performance",["Pay suppliers","Negotiate contracts","Audit inventory"],"Tool of the performance-based approach.");
+q(6,"The Kraljic matrix classifies purchases according to…","Their importance and the complexity of the supply market",["Their price and color","Their size and weight","Their country and lead time"],"Goal: minimize supply vulnerability and maximize purchasing power.");
+q(6,"Supplier development (reverse marketing) refers to…","Aggressive buyer involvement: the buyer initiates contact and sets price and terms",["The supplier solicits the buyer","Closing the supplier","Buying abroad"],"Motivation: inefficiencies of supplier-initiated marketing.");
+q(6,"The two driving strategies of global sourcing are…","Factor-input (low cost/quality) and market access",["Price and promotions","Speed and volume","Push and pull"],"Sourcing where you plan to sell = market access.");
+q(6,"What is an example of a hidden cost of global sourcing?","Changes in duties and taxes during the contract",["Falling ocean freight","Inventory reduction","Fewer suppliers"],"Also: higher management costs, increased inventory, logistics cost volatility.");
+q(6,"The five dimensions of social responsibility in purchasing are…","Diversity, environment, human rights, philanthropy, safety",["Price, quality, lead time, service, volume","Hierarchy, matrix, network, flow, stock","Local, global, regional, national, urban"],"Sustainable purchasing integrates social and environmental considerations.");
+q(6,"In investment recovery, 'waste' refers to…","Damaged, unusable materials with no economic value",["Excess inventory","Obsolete materials","Materials in good condition that can be resold"],"Excess = beyond needs; obsolete = will no longer be used; scrap = unusable/by-product; waste = no value.");
+q(6,"Supply chain finance allows…","Buyers to extend their payment terms while paying suppliers earlier",["Doubling inventory","Eliminating suppliers","Reducing the treasury"],"Facilitated by FinTechs with cloud software.");
+q(6,"Which is an ethical issue in purchasing?","Bribes and kickbacks, conflicts of interest",["Reducing lead times","Using a scorecard","Conducting an audit"],"Also: gifts, misuse of information, lying.");
 
-  <!-- ---------- VALUES ---------- -->
-  <section class="values">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="tag">POURQUOI JEFFE TOITURE</div>
-          <h2>Un couvreur réactif et rigoureux</h2>
-        </div>
-        <p>Un travail propre, dans les délais annoncés, et une équipe joignable quand ça compte.</p>
-      </div>
-      <div class="value-grid">
-        <div class="value">
-          <div class="num">A</div>
-          <h3>Réactivité</h3>
-          <p>Une équipe disponible 24h/24 pour les urgences toiture à Vierzon et alentours.</p>
-        </div>
-        <div class="value">
-          <div class="num">B</div>
-          <h3>Savoir-faire artisanal</h3>
-          <p>Des techniques éprouvées, adaptées aux toitures anciennes comme aux constructions récentes.</p>
-        </div>
-        <div class="value">
-          <div class="num">C</div>
-          <h3>Transparence</h3>
-          <p>Un diagnostic honnête et un devis détaillé avant toute intervention.</p>
-        </div>
-        <div class="value">
-          <div class="num">D</div>
-          <h3>Travail garanti</h3>
-          <p>Des chantiers réalisés dans les règles de l'art, pour une toiture qui dure.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+/* ---------- Chapter 12 ---------- */
+q(12,"What are the five modes of transportation?","Air, motor carrier (road), pipeline, rail, water",["Air, road, bicycle, boat, drone","Rail, road, tunnel, cable, sea","Air, road, rail, walking, space"],"Air, motor carrier, pipeline, rail, water.");
+q(12,"What are the six attributes that determine a mode's appeal?","Cost, speed, reliability, capability, capacity, flexibility",["Price, color, weight, size, volume, age","Cost, brand, quality, date, place, size","Speed, duration, footprint, rate, ratio, index"],"Cost, speed, reliability, capability, capacity, flexibility.");
+q(12,"Air freight is best suited to…","High-value, low-volume, urgent or perishable products",["Low-value bulk","Crude oil","Scrap metal"],"Fast for more than 600 miles, but expensive.");
+q(12,"Air rates are based on…","Dimensional weight",["The selling price","Distance only","The color of the package"],"Dimensional weight.");
+q(12,"What is the main reliability difficulty of air freight?","Congestion from passenger traffic (belly freight) and weather",["Sandstorms only","Rail freezes","Canal droughts"],"Fog, snow, thunderstorms.");
+q(12,"What is the main advantage of motor carrier transportation?","Flexibility",["The lowest cost","The highest capacity","The lowest speed"],"Cost is generally lower than air freight.");
+q(12,"LTL (less-than-truckload) refers to…","Shipments of 150 to 10,000 pounds: too big for manual handling, too small to fill a truck",["Shipments over 50,000 pounds","Parcels under 150 pounds","Liquids only"],"LTL trucks carry shipments from several shippers through a network of terminals.");
+q(12,"Why are TL rates lower than LTL rates?","Direct loading from shipper to consignee without going through terminals, and similar administration",["Because trucks are slower","Because products are lighter","Because there are fewer carriers"],"The shipper loads, the consignee unloads; administrative costs nearly identical for 25,000 vs 250 pounds.");
+q(12,"Which mode is the only one without vehicles and the most reliable, but also the slowest?","Pipeline",["Rail","Water","Air"],"Carries only liquids or gases; high fixed costs, low unit cost.");
+q(12,"In rail transportation, the chapter says rail is…","Neither 'the best' nor 'the worst' on any of the six attributes",["The best at everything","The worst at everything","The fastest"],"Cheaper than air and motor carrier, more expensive than pipeline and water.");
+q(12,"Water transportation is characterized by…","Slow, relatively cheap, low-value bulk, large volumes",["Very fast and expensive","Very reliable","Liquids only"],"Unreliable due to drought, ice, aging locks.");
+q(12,"Intermodal transportation is…","The use of a container that can be transferred from one mode to another without reloading its contents",["The use of a single mode","A type of contract","Transportation insurance"],"Example: piggyback (trailer or container on a flatcar).");
+q(12,"A TEU is…","A unit equivalent to a 20-foot container",["A 40-foot container","A type of truck","A unit of weight"],"Twenty-foot Equivalent Unit.");
+q(12,"ULDs (unit load devices) are…","Containers designed specifically for aircraft fuselages",["Containers for trains","Software","Refrigerated trucks"],"For air freight.");
+q(12,"Freight forwarders exist to provide a service…","To shippers who lack enough volume for TL rates: consolidation and pickup/delivery",["For massive-volume shippers only","Of rail transportation exclusively","Of warehouse rental"],"They generally don't do the line-haul themselves.");
+q(12,"'Shippers' associations' are…","Non-profit organizations seeking the lowest rates for their members",["Airlines","Government agencies","For-profit brokers"],"Similar to forwarders but non-profit.");
+q(12,"Transportation brokers…","Match a shipper's freight with a carrier",["Own all their trucks","Regulate prices","Build roads"],"In TL, they retain a carrier and receive a share of the fees.");
+q(12,"A parcel weighs up to…","150 pounds",["10 pounds","1,000 pounds","10,000 pounds"],"Parcel carriers: USPS, UPS, FedEx Express…");
+q(12,"Which U.S. agency is responsible for rail transportation safety?","Federal Railroad Administration (FRA)",["FAA","FMCSA","USCG"],"FAA = air; FMCSA = trucks/buses; OPS = pipelines; USCG = maritime; DOT = all modes.");
+q(12,"What happened after economic deregulation?","The CAB was abolished in 1985, the ICC in 1995, and the STB was created",["The ICC was abolished in 1985","The STB was abolished in 1995","Nothing changed"],"Deregulation began in the 1970s.");
+q(12,"What are the types of for-hire carriers?","Common, contract, exempt",["Private, public, mixed","Fast, slow, medium","National, regional, local"],"The private carrier is exempt from economic regulation.");
+q(12,"A private carrier is…","A company whose main business is not transportation but which handles its own transport",["A carrier serving the general public","A brokerage firm","A state-owned transport company"],"Common = general public; contract = specialized contract.");
 
-  <!-- ---------- CAPABILITIES ---------- -->
-  <section class="capabilities">
-    <div class="wrap">
-      <div class="tag">NOS SAVOIR-FAIRE</div>
-      <h2>Tout ce qu'on peut faire sur votre toit</h2>
-      <div class="cap-list">
-        <div class="cap-item"><span class="mk">→</span>Pose de tuiles terre cuite et béton</div>
-        <div class="cap-item"><span class="mk">→</span>Ardoises naturelles et artificielles</div>
-        <div class="cap-item"><span class="mk">→</span>Couverture en bac acier</div>
-        <div class="cap-item"><span class="mk">→</span>Zinguerie zinc et cuivre</div>
-        <div class="cap-item"><span class="mk">→</span>Gouttières, chéneaux et descentes</div>
-        <div class="cap-item"><span class="mk">→</span>Faîtage, rives et arêtiers</div>
-        <div class="cap-item"><span class="mk">→</span>Pose de fenêtres de toit (Velux)</div>
-        <div class="cap-item"><span class="mk">→</span>Démoussage et traitement hydrofuge</div>
-        <div class="cap-item"><span class="mk">→</span>Isolation sous toiture</div>
-        <div class="cap-item"><span class="mk">→</span>Recherche et réparation de fuites</div>
-        <div class="cap-item"><span class="mk">→</span>Intervention après tempête</div>
-        <div class="cap-item"><span class="mk">→</span>Rénovation de toitures anciennes</div>
-      </div>
-    </div>
-  </section>
+/* ============ STATE & TOOLS ============ */
+const $ = s => document.querySelector(s);
+const app = $("#app"), topEl = $("#top");
+const LEVELS = [
+  [0,"Intern"],[150,"Logistics Analyst"],[400,"Supervisor"],[800,"Transportation Manager"],
+  [1400,"Supply Chain Director"],[2200,"SCM Legend"]
+];
+const BADGES = {
+  first:["🚚","First parcel delivered"], s5:["🔥","Streak of 5"], s10:["⚡","Streak of 10"],
+  perfect:["💎","Perfect order (100%)"], surv:["🛡️","Survivor (15+ in Survival mode)"],
+  exam:["🎓","Mock exam ≥ 16/20"], all:["🏆","All chapters completed"], speed:["⏱️","Lightning (5 answers < 5 s)"]
+};
+let S = {xp:0, best:{}, badges:{}, wrong:[], speedCount:0};
+try{ const r=localStorage.getItem("logiquest_en"); if(r) S=Object.assign(S,JSON.parse(r)); }catch(e){}
+function save(){ try{localStorage.setItem("logiquest_en",JSON.stringify(S));}catch(e){} }
+function lvlInfo(){
+  let i=0; for(let k=0;k<LEVELS.length;k++) if(S.xp>=LEVELS[k][0]) i=k;
+  const cur=LEVELS[i][0], nxt=LEVELS[i+1]?LEVELS[i+1][0]:cur+1;
+  return {i, name:LEVELS[i][1], pct: LEVELS[i+1]? Math.min(100,(S.xp-cur)/(nxt-cur)*100):100};
+}
+function renderTop(){
+  const L=lvlInfo();
+  topEl.innerHTML=`<div class="lvl">Lvl ${L.i+1} · ${L.name}</div>
+   <div class="xpbar" title="${S.xp} XP"><i style="width:${L.pct}%"></i></div>
+   <div class="pill">${S.xp} XP</div>
+   <div class="pill">${Object.keys(S.badges).length}/${Object.keys(BADGES).length} badges</div>`;
+}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function toast(m){const d=document.createElement("div");d.className="toast";d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),3200);}
+function giveBadge(k){ if(!S.badges[k]){S.badges[k]=1;save();toast("🏅 Badge: "+BADGES[k][1]);fx(60);} }
 
-  <!-- ---------- ZONE ---------- -->
-  <section class="zone" id="zone">
-    <div class="wrap zone-grid">
-      <div>
-        <div class="tag">ZONE D'INTERVENTION</div>
-        <h2>À Vierzon et dans les communes voisines</h2>
-        <p>Notre équipe se déplace à Vierzon et dans tout le Cher pour vos travaux de couverture comme pour vos urgences toiture.</p>
-      </div>
-      <div class="zone-map bracketed">
-        <div class="center">Basés à Vierzon — 1 rue de Wittelsheim</div>
-        <div class="commune-list">
-          <span>Vierzon</span>
-          <span>Foëcy</span>
-          <span>Méreau</span>
-          <span>Méry-sur-Cher</span>
-          <span>Vouzeron</span>
-          <span>Thénioux</span>
-          <span>Brinay</span>
-          <span>Saint-Hilaire-de-Court</span>
-          <span>Lury-sur-Arnon</span>
-        </div>
-      </div>
-    </div>
-  </section>
+/* confetti */
+const cv=$("#fx"), cx=cv.getContext("2d"); let parts=[];
+function fit(){cv.width=innerWidth;cv.height=innerHeight;} addEventListener("resize",fit); fit();
+function fx(n){
+  for(let i=0;i<n;i++) parts.push({x:innerWidth/2,y:innerHeight/3,vx:(Math.random()-.5)*12,vy:-Math.random()*12-3,
+    c:`hsl(${Math.random()*360},90%,60%)`,s:4+Math.random()*5,l:90});
+  if(parts.length===n) loop();
+}
+function loop(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.l--;cx.fillStyle=p.c;cx.fillRect(p.x,p.y,p.s,p.s);});
+  parts=parts.filter(p=>p.l>0&&p.y<cv.height);
+  if(parts.length) requestAnimationFrame(loop); else cx.clearRect(0,0,cv.width,cv.height);
+}
 
-  <!-- ---------- CONTACT ---------- -->
-  <section class="contact" id="contact">
-    <div class="wrap contact-grid">
-      <div>
-        <div class="tag">CONTACT</div>
-        <h2>Parlons de votre toiture</h2>
-        <p class="lede">Un projet de couverture, une question, ou une urgence ? Contactez-nous, nous répondons rapidement — à toute heure en cas d'urgence.</p>
-        <div class="contact-details">
-          <div class="contact-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <div><span class="label">Téléphone</span><a href="tel:+33624546480">06 24 54 64 80</a></div>
-          </div>
-          <div class="contact-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
-            <div><span class="label">E-mail</span><a href="mailto:jeffetoiturecouvreurvierzon@gmail.com">jeffetoiturecouvreurvierzon@gmail.com</a></div>
-          </div>
-          <div class="contact-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <div><span class="label">Adresse</span><span>1 rue de Wittelsheim, 18100 Vierzon</span></div>
-          </div>
-          <div class="contact-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <div><span class="label">Disponibilité</span><span>24h/24 — 7j/7</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="contact-card">
-        <div class="tag">URGENCE TOITURE</div>
-        <h3>On vous répond, même en pleine nuit.</h3>
-        <p>Fuite, tuiles envolées, dégât des eaux : appelez directement, on s'organise pour intervenir au plus vite.</p>
-        <a class="btn-primary" href="tel:+33624546480">Appeler le 06 24 54 64 80</a>
-      </div>
-    </div>
-  </section>
+/* ============ HOME SCREEN ============ */
+let opts={timer:false};
+function home(){
+  renderTop();
+  const cards=Object.keys(CH).map(k=>{
+    const n=Q.filter(x=>x.c==k).length, b=S.best[k]||0;
+    const st=b>=100?"★★★":b>=80?"★★☆":b>=50?"★☆☆":"☆☆☆";
+    return `<button class="chap" data-c="${k}"><small>Chapter ${k}</small><b>${CH[k]}</b>
+      <small>${n} questions · best ${b}%</small><div class="stars">${st}</div></button>`;
+  }).join("");
+  const bd=Object.keys(BADGES).map(k=>`<span class="badge ${S.badges[k]?"on":""}">${BADGES[k][0]} ${BADGES[k][1]}</span>`).join("");
+  app.innerHTML=`
+   <h1>📦 Logistics Quest</h1>
+   <p style="color:var(--mut);margin-top:0">${Q.length} questions drawn from your 7 chapters (1, 2, 3, 4, 5, 6, 12). Earn XP, build streaks, unlock badges.</p>
+   <div class="modes">
+     <button class="mode m4" id="mExam">🎓 Mock exam<small>20 mixed questions, scored out of 20</small></button>
+     <button class="mode m2" id="mSurv">💀 Survival mode<small>3 lives, endless questions: beat your record</small></button>
+     <button class="mode m3" id="mWrong">🩹 My mistakes<small>${S.wrong.length} question(s) to review</small></button>
+   </div>
+   <div class="opt-row"><label><input type="checkbox" id="oTimer" ${opts.timer?"checked":""}> ⏱️ 20 s timer per question (XP bonus if fast)</label></div>
+   <h2>Chapters</h2><div class="grid">${cards}</div>
+   <h2>Badges</h2><div class="badges">${bd}</div>
+   <p style="color:var(--mut);font-size:.8rem">Tip: press 1-4 to answer, Enter to continue. Your progress is saved in this browser.</p>`;
+  $("#oTimer").onchange=e=>opts.timer=e.target.checked;
+  app.querySelectorAll(".chap").forEach(b=>b.onclick=()=>start({mode:"chap",c:+b.dataset.c}));
+  $("#mExam").onclick=()=>start({mode:"exam"});
+  $("#mSurv").onclick=()=>start({mode:"surv"});
+  $("#mWrong").onclick=()=>{ if(!S.wrong.length) return toast("No mistakes recorded, well done!"); start({mode:"wrong"}); };
+}
 
-</main>
+/* ============ GAME ============ */
+let G=null, timerId=null;
+function start(cfg){
+  let pool;
+  if(cfg.mode==="chap") pool=shuffle(Q.filter(x=>x.c===cfg.c));
+  else if(cfg.mode==="exam") pool=shuffle(Q).slice(0,20);
+  else if(cfg.mode==="surv") pool=shuffle(Q);
+  else pool=shuffle(S.wrong.map(i=>Q[i]).filter(Boolean));
+  G={cfg,pool,i:0,score:0,streak:0,maxStreak:0,lives:3,gained:0,miss:[],answered:false,t0:0,fast:0};
+  next();
+}
+function lvlUpCheck(before){ const a=lvlInfo().i; if(a>before){toast("⬆️ Level "+(a+1)+": "+lvlInfo().name);fx(120);} }
+function next(){
+  clearInterval(timerId);
+  if(G.i>=G.pool.length || (G.cfg.mode==="surv" && G.lives<=0)) return end();
+  const Qs=G.pool[G.i]; G.cur=Qs; G.answered=false;
+  const all=shuffle([{t:Qs.good,ok:true},...Qs.bad.map(t=>({t,ok:false}))]); G.opts=all;
+  const surv=G.cfg.mode==="surv";
+  const total=surv?"∞":G.pool.length;
+  app.innerHTML=`
+   <div class="hud">
+     <span class="pill">Question <b>${G.i+1}</b>/${total}</span>
+     <span class="pill">🔥 Streak <b id="stk">${G.streak}</b></span>
+     <span class="pill">✨ <b id="gx">${G.gained}</b> XP</span>
+     ${surv?`<span class="hearts" id="hr">${"❤️".repeat(G.lives)}${"🖤".repeat(3-G.lives)}</span>`:""}
+     <a class="link" id="quit" style="margin-left:auto">Quit</a>
+   </div>
+   ${surv?"":`<div class="prog"><i style="width:${G.i/G.pool.length*100}%"></i></div>`}
+   ${opts.timer?`<div class="timer"><i id="tm"></i></div>`:""}
+   <div class="q">
+     <div class="tag">Ch. ${Qs.c} · ${CH[Qs.c]}</div>
+     <h3>${esc(Qs.t)}</h3>
+     <div id="ans">${all.map((o,k)=>`<button class="ans" data-k="${k}"><kbd>${k+1}</kbd><span>${esc(o.t)}</span></button>`).join("")}</div>
+     <div id="fbx"></div>
+   </div>`;
+  app.querySelectorAll(".ans").forEach(b=>b.onclick=()=>answer(+b.dataset.k));
+  $("#quit").onclick=()=>{clearInterval(timerId);home();};
+  G.t0=Date.now();
+  if(opts.timer){
+    const tm=$("#tm"); const dur=20000;
+    timerId=setInterval(()=>{
+      const r=Math.max(0,1-(Date.now()-G.t0)/dur);
+      tm.style.width=r*100+"%"; tm.style.background=r>.5?"var(--ok)":r>.25?"var(--acc)":"var(--bad)";
+      if(r<=0){clearInterval(timerId); answer(-1);}
+    },100);
+  }
+}
+function answer(k){
+  if(G.answered) return; G.answered=true; clearInterval(timerId);
+  const before=lvlInfo().i, Qs=G.cur, sec=(Date.now()-G.t0)/1000;
+  const good=k>=0 && G.opts[k].ok;
+  app.querySelectorAll(".ans").forEach((b,idx)=>{
+    b.disabled=true;
+    if(G.opts[idx].ok) b.classList.add("ok");
+    else if(idx===k) b.classList.add("bad");
+  });
+  const qi=Q.indexOf(Qs);
+  let msg;
+  if(good){
+    G.score++; G.streak++; G.maxStreak=Math.max(G.maxStreak,G.streak);
+    let xp=10+Math.min(G.streak,6)*2;
+    if(opts.timer && sec<8) xp+=Math.round(8-sec);
+    if(sec<5){S.speedCount=(S.speedCount||0)+1; G.fast++;}
+    S.xp+=xp; G.gained+=xp; flash("+"+xp+" XP");
+    S.wrong=S.wrong.filter(x=>x!==qi);
+    if(G.streak===5) giveBadge("s5"); if(G.streak===10) giveBadge("s10");
+    giveBadge("first"); if(G.fast>=5) giveBadge("speed");
+    msg=`<div class="fb ok"><b>✅ Correct!</b> ${esc(Qs.e)}</div>`;
+  }else{
+    G.streak=0; G.miss.push(Qs); if(G.cfg.mode==="surv") G.lives--;
+    if(!S.wrong.includes(qi)) S.wrong.push(qi);
+    msg=`<div class="fb bad"><b>${k<0?"⏰ Time's up.":"❌ Wrong."}</b> Correct answer: <b>${esc(Qs.good)}</b><br>${esc(Qs.e)}</div>`;
+  }
+  save(); renderTop(); lvlUpCheck(before);
+  $("#stk").textContent=G.streak; $("#gx").textContent=G.gained;
+  const hr=$("#hr"); if(hr) hr.textContent="❤️".repeat(Math.max(0,G.lives))+"🖤".repeat(3-Math.max(0,G.lives));
+  const last=(G.i+1>=G.pool.length)||(G.cfg.mode==="surv"&&G.lives<=0);
+  $("#fbx").innerHTML=msg+`<button class="btn" id="nx">${last?"See results 🏁":"Next →"}</button>`;
+  $("#nx").onclick=()=>{G.i++;next();}; $("#nx").focus();
+}
+function flash(t){const d=document.createElement("div");d.className="xpfloat";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1000);}
 
-<footer>
-  <div class="wrap footer-grid">
-    <a class="brand" href="#top"><span class="name">JEFFE TOITURE</span><small>Couvreur — Vierzon</small></a>
-    <nav>
-      <a href="#prestations">Prestations</a>
-      <a href="#urgence">Urgences 24/7</a>
-      <a href="#zone">Zone</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <span>1 rue de Wittelsheim, 18100 Vierzon — 06 24 54 64 80</span>
-  </div>
-</footer>
+document.addEventListener("keydown",e=>{
+  if(!G||!document.querySelector(".q")) return;
+  if(!G.answered && e.key>="1" && e.key<="4"){ const k=+e.key-1; if(G.opts[k]) answer(k); }
+  else if(G.answered && e.key==="Enter"){ const b=$("#nx"); if(b){e.preventDefault();b.click();} }
+});
 
+/* ============ END ============ */
+function end(){
+  clearInterval(timerId);
+  const before=lvlInfo().i;
+  const n=G.pool.length, sc=G.score, pct=n?Math.round(sc/n*100):0, cfg=G.cfg;
+  let title="", extra="";
+  if(cfg.mode==="chap"){
+    S.best[cfg.c]=Math.max(S.best[cfg.c]||0,pct);
+    if(pct===100) giveBadge("perfect");
+    if(Object.keys(CH).every(k=>(S.best[k]||0)>=70)) giveBadge("all");
+    title=`Chapter ${cfg.c} completed`;
+  }else if(cfg.mode==="exam"){
+    const note=(sc/n*20).toFixed(1);
+    if(sc/n*20>=16) giveBadge("exam");
+    title="Mock exam"; extra=`<div class="big">${note}/20</div>`;
+  }else if(cfg.mode==="surv"){
+    title="End of Survival mode"; extra=`<div class="big">${sc}</div><div>correct answers before the end</div>`;
+    if(sc>=15) giveBadge("surv");
+  }else title="Review session";
+  const bonus=pct===100&&n>=5?50:0; if(bonus){S.xp+=bonus;G.gained+=bonus;}
+  save(); renderTop(); lvlUpCheck(before);
+  if(pct>=70||cfg.mode==="surv") fx(150);
+  const rev=G.miss.map(m=>`<div class="rev"><b>${esc(m.t)}</b><br><span class="g">✔ ${esc(m.good)}</span><br><span style="color:var(--mut)">${esc(m.e)}</span></div>`).join("");
+  const msg=pct>=90?"Impressive, you're ready for the exam! 🏆":pct>=70?"Very good, just a little more effort. 💪":"Read the corrections below and try again. 📚";
+  app.innerHTML=`<div class="center">
+    <h2>🏁 ${title}</h2>
+    ${extra||`<div class="big">${pct}%</div>`}
+    <p>${cfg.mode==="surv"?"":`${sc}/${n} correct answers · `}Best streak: ${G.maxStreak} 🔥 · <b>+${G.gained} XP</b>${bonus?" (incl. +50 perfect bonus)":""}</p>
+    <p>${msg}</p>
+    <button class="btn" id="again">Play again</button>
+    <button class="btn sec" id="hm">Menu</button>
+    ${G.miss.length?`<h3 style="margin-top:22px">To review (${G.miss.length})</h3>${rev}`:""}
+  </div>`;
+  $("#again").onclick=()=>start(cfg); $("#hm").onclick=home;
+}
+home();
+</script>
 </body>
 </html>
